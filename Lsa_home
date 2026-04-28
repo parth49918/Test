@@ -1,247 +1,1263 @@
+<title>Annual Report 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 <style>
-
-/* ================= ROOT ================= */
-:root{
-  --bg:#001446;
+  :root{
+  --bg:#061a2b;
+  --bg2:#001446;
   --text:#eaf1ff;
   --muted:#b9c7e6;
-  --accent:#fdc82f;
   --stroke:rgba(255,255,255,.12);
+  --accent:#f5c542;
+  --shadow:0 12px 30px rgba(0,0,0,.35);
+
+  --header-h:100px;
+  --container-pad: 16px;
 }
 
-/* ================= BASE ================= */
-*{box-sizing:border-box}
+/* BASE */
+*{ 
+  box-sizing:border-box; 
+}
+html,body{
+  height:100%;
+  max-width:100%;
+  font-family: Helvetica Neue, Helvetica, Ubuntu, Segoe UI, Verdana, sans-serif;
+}
 body{
   margin:0;
-  font-family:'Mulish',sans-serif;
-  background:var(--bg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: #001446;
   color:var(--text);
   overflow-x:hidden;
+  padding: 30px;
+}
+a{ 
+  color:inherit; text-decoration:none; 
+}
+a:hover{ 
+  color:var(--accent); 
 }
 
 .container{
-  max-width:1200px;
-  margin:auto;
-  padding:0 20px;
+  width:100%;
+  margin-inline:auto;
+  padding-inline: var(--container-pad);
+}
+.lpb{
+  margin-top: -100px;
+
+}
+.skip{
+  position:absolute;
+  left:-999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+.skip:focus{
+  left:16px;
+  top:16px;
+  width:auto;
+  height:auto;
+  padding:10px 12px;
+  background:#fff;
+  color:#000;
+  border-radius:10px;
+  z-index:999999;
 }
 
-/* ================= SECTION ================= */
-.section{
-  padding:100px 0;
-  position:relative;
+/* HEADER*/
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  width:100%;
+  z-index:99999;
+  backdrop-filter: blur(12px);
+  background:#001446;
+  border-bottom:1px solid var(--stroke);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  overflow:visible;
 }
 
-/* ================= HERO ================= */
-.hero{
-  min-height:90vh;
+.navbar{
+  display:flex;
+  height:var(--header-h);
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:14px 0;
+  position:relative; 
+}
+
+/* BRAND */
+.brand{
   display:flex;
   align-items:center;
+  gap:12px;
+  font-weight:800;
+  letter-spacing:.2px;
+  margin-left: 12px;
+}
+.brand.small{ font-weight:700; }
+.brand-text{ white-space:nowrap; }
+
+/* Badge */
+.brand-badge{
+  display:inline-block;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  background-image:url("../images/681a2ff7ca0a8267756c96d2_beb7e5d2dde3919dc07c5152557f336b_LPS-Badge.avif");
+  transition: transform .35s ease, width .35s ease, height .35s ease, border-radius .35s ease;
+  will-change: transform, width, height;
+}
+
+/* Desktop overlap state */
+@media (min-width: 981px){
+  .brand-badge#brandBadge{
+    width:160px;
+    height:160px;
+    border-radius:18px;
+    transform: translateY(30px);
+    margin-left: 24px;
+  }
+  .header.is-scrolled .brand-badge#brandBadge{
+    width:100px;
+    height:100px;
+    border-radius:10px;
+    transform: translateY(0);
+    margin-left: 16px;
+  }
+  .header.is-scrolled .navbar{
+    padding:10px 0;
+    transition: padding .35s ease;
+  }
+}
+
+/* CTA / RIGHT */
+.right{ display:flex; align-items:center; gap:10px; }
+
+.cta,
+.ghost{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:800;
+  color:#000;
+  background:#fdc82f;
+}
+.cta{
+  border:1px solid rgba(245,197,66,.35);
+}
+.ghost{
+  border:1px solid var(--stroke);
+}
+.cta:hover{ background: rgba(245,197,66,.16); }
+.ghost:hover{ background: rgba(255,255,255,.05); }
+
+/* Burger */
+.burger{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,.03);
+  color:var(--text);
+  font-size:18px;
+  cursor:pointer;
+}
+.burger.close{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* NAV LINKS */
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.navlink,
+.navbtn,
+.navbtn-nolink{
+  cursor:pointer;
+  border:1px solid transparent;
+  text-transform:uppercase;
+  background:transparent;
+  color:var(--text);
+  padding:10px 12px;
+  font-size:25px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.navlink:hover{ background: rgba(255,255,255,.04); }
+
+.navbtn:hover,
+.navbtn-nolink:hover{
+  border-color: var(--stroke);
+  color: var(--accent);
+}
+
+/* caret */
+.caret{
+  width:10px;
+  height:10px;
+  display:inline-block;
+  border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;
+  transform: rotate(45deg);
+  margin-top:-2px;
+  opacity:.9;
+  transition: transform .25s ease;
+}
+
+/*MEGA DROPDOWN */
+.dd{ position:relative; }
+
+.mega{
+  display:none;
+  position:fixed;
+  top: calc(var(--header-h) + 10px);
+  left:0;
+  right:0;
+  width:100%;
+  height:270px;
+  padding:18px;
+  background:#001446;
+  box-shadow: var(--shadow);
+  z-index:999999;
+
+  /* 3-column grid */
+  display:none;
+  grid-template-columns: minmax(240px, 360px) 1fr 1fr;
+  column-gap:18px;
+  row-gap:14px;
+
+  align-items:start;
+  align-content:start;
+}
+
+.dd.open .mega{ display:grid; }
+
+/* Left title column */
+.mega-title{
+  grid-column:1;
+  grid-row:1 / span 50;
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  padding:16px;
+  margin:0;
+  font-size:32px;
+  line-height:1.15;
+  letter-spacing:.03em;
+  color:var(--text);
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.mega .megamenu1{ grid-column:2; }
+.mega .megamenu2{ grid-column:3; }
+
+/* Links */
+.mega a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-left: 30px;
+  padding:16px;
+  border-radius:14px;
+  background:#001446;
+
+  margin:0;
+  width:100%;
+  font-size:16px;
+  font-weight:700;
+}
+.mega a:hover{
+  background: rgba(245,197,66,.08);
+  border-color: rgba(245,197,66,.25);
+}
+
+/* pill badge */
+.pill{
+  font-size:12px;
+  font-weight:800;
+  color:var(--muted);
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.04);
+  width:34px;
+  height:24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  white-space:nowrap;
+}
+
+/* active open state */
+.dd.open > .navbtn{ color: var(--accent); }
+.dd.open > .navbtn .caret{ transform: rotate(-135deg); }
+
+.header.mega-open .brand-badge#brandBadge{
+  width:100px;
+  height:100px;
+  border-radius:10px;
+  transform: translateY(0);
+}
+.header.mega-open{
+  padding-bottom: 260px; 
+}
+.header.mega-open .navbar{
+  padding:10px 0;
+}
+
+/* HERO */
+.hero{
   background:
-    linear-gradient(90deg,#001446 0%,#001446cc 40%,transparent 70%),
-    url("../images/hat.png") right center/cover no-repeat;
+    linear-gradient(90deg, #001446 0%, #001446e1 40%, #00144600 70%, #00144600 100%),
+    url("/image.png");
+  background-position: center, right 25%, center;
+  background-size: cover;
+  padding:38px 0 18px;
+  min-height: 700px;
+}
+
+.hero-lpsb{
+  background:
+    linear-gradient(360deg, #001446 0%, #001446bb 40%, #00144600 70%, #001446 100%),
+    linear-gradient(0deg, #001446 0%, #00144600 40%, #00144600 100%),
+    url("../images/lpsb.avif");
+  background-position: center, right 55%, center;
+  background-size: cover;
+  padding:38px 0 18px;
+  min-height: 700px;
+}
+
+.hero-chief{
+  background:
+    linear-gradient(360deg, #001446 0%, #001446bb 40%, #00144600 70%, #001446 100%),
+    linear-gradient(0deg, #001446 0%, #00144600 40%, #00144600 100%),
+    url("../images/truong.JPG");
+  background-position: center, right 15%, center;
+  background-size: cover;
+  padding:38px 0 18px;
+  min-height: 700px;
+}
+
+.heroGrid{
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap:20px;
+  align-items:stretch;
+  width:100%;
+  padding: 50px 16px;
+}
+
+.kicker{
+  display:inline-block;
+  font-weight:900;
+  letter-spacing:.14em;
+  font-size:35px;
+  color:#eaf1ff;
+  text-transform:uppercase;
+  margin-bottom:10px;
 }
 
 .head{
-  font-size:80px;
-  color:var(--accent);
+  display:inline-block;
   font-weight:900;
-  letter-spacing:.1em;
+  letter-spacing:.14em;
+  font-size:82px;
+  color:#fdc82f;
+  text-transform:uppercase;
+  margin-bottom:10px;
 }
 
-.hero h1{
-  font-size:48px;
+.head-lpsb{
+  display:inline-block;
+  font-weight:900;
+  letter-spacing:.01em;
+  color:#fff;
+  font-size:29px;
+  text-transform:uppercase;
 }
+.head-lpsb span{ display:block; }
 
-.lead{
+.kickerTitle{
+  display:inline-block;
+  margin-top:100px;
+  font-weight:700;
+  letter-spacing:.14em;
+  font-family: Helvetica Neue,Helvetica,Ubuntu,Segoe UI,Verdana,sans-serif;
+  font-size:72px;
   color:var(--muted);
-  font-size:18px;
-  max-width:600px;
-  border-left:2px solid var(--accent);
-  padding-left:16px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.kickerTitle-lpsb{
+  font-weight:700;
+  font-family: Helvetica Neue,Helvetica,Ubuntu,Segoe UI,Verdana,sans-serif;
+  font-size:48px;
+  margin-top:450px;
+  color:var(--muted);
+  text-transform:uppercase;
 }
 
-/* ================= PANELS ================= */
+h1{ margin:6px 0 8px; font-size:clamp(32px, 5vw, 54px); line-height:1.05; }
+.lead{ margin:0; color:var(--muted); font-size:clamp(15px, 1.4vw, 18px); }
+.heroActions{ margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; }
+
+.heroCard{
+  display:none;
+  border-radius:22px;
+  border:1px solid var(--stroke);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+}
+.heroImg{
+  height:100%;
+  min-height:280px;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.55)),
+    radial-gradient(900px 500px at 30% 20%, rgba(245,197,66,.22), transparent 60%),
+    linear-gradient(120deg, #1c4b7a 0%, #0a2540 55%, #071b2c 100%);
+}
+
+/* SECTIONS */
+.section{
+  padding:40px 16px;
+  width:100%;
+  background:#001446;
+  scroll-margin-top: var(--header-h);
+}
 .panel{
   border:1px solid var(--stroke);
-  border-radius:20px;
-  padding:30px;
-  background:rgba(255,255,255,.03);
+  border-radius:22px;
+  background: rgba(255,255,255,.03);
+  box-shadow: var(--shadow);
+  overflow:hidden;
 }
+.panelInner{ padding:18px; }
+h2{ margin:0 0 10px; font-size:22px; }
+.muted{ color:var(--muted); }
 
-/* ================= STATS ================= */
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+  grid-template-columns: repeat(3,1fr);
+  gap:12px;
 }
-
 .stat{
-  padding:20px;
-  border-radius:16px;
   border:1px solid var(--stroke);
+  border-radius:18px;
+  background: rgba(255,255,255,.03);
+  padding:16px;
+  font-size:26px;
 }
+.value{ font-size:60px; font-weight:900; letter-spacing:-.02em; }
+.label{ margin-top:8px; color:var(--muted); font-weight:700; font-size:20px; }
+.label-desc{ font-size:15px; }
 
-.value{
-  font-size:50px;
-  font-weight:900;
-}
-
-.label{
-  margin-top:10px;
-  color:var(--muted);
-}
-
-/* ================= BLOCKS ================= */
-.blocks{
-  display:grid;
-  gap:15px;
-}
-
+.blocks{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:14px; }
 .block{
   display:flex;
+  align-items:flex-start;
   justify-content:space-between;
+  gap:12px;
   padding:16px;
-  border-radius:12px;
+  border-radius:18px;
   border:1px solid var(--stroke);
-  transition:.3s;
+  background: rgba(255,255,255,.03);
+}
+.block strong{ display:block; margin-bottom:6px; }
+.arrow{
+  margin-top:2px;
+  width:14px;
+  height:14px;
+  border-right:2px solid var(--muted);
+  border-top:2px solid var(--muted);
+  transform: rotate(45deg);
 }
 
-.block:hover{
-  transform:translateX(6px);
-  border-color:var(--accent);
+.callout-yellow{
+  padding-left: 2rem;
+  margin-top: 0;
+  border-left: 1px solid var(--accent);
 }
 
-/* ================= REVEAL ================= */
+/* FOOTER*/
+.footer{
+  padding:40px 16px;
+  border-top:3px solid #fdc82f;
+  background:#001446;
+  border-radius:32px 32px 0 0;
+  color:var(--muted);
+}
+.footerGrid{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.footerTitle{ font-weight:900; color:var(--text); }
+.footerTag{ align-self:flex-end; }
+
+/* MOBILE SHEET MENU */
+.mobileOverlay{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.55);
+  z-index:80;
+}
+.sheet{
+  position:absolute;
+  top:0;
+  right:0;
+  width:min(480px, 92vw);
+  height:100%;
+  background:#001446;
+  padding:14px;
+  overflow:auto;
+  margin-top: var(--header-h);
+}
+
+.sheetHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px 0 12px;
+  border-bottom:1px solid var(--stroke);
+  margin-bottom:10px;
+}
+
+.sheetLink,
+.sheetToggle{
+  width:100%;
+  text-align:left;
+  background:#001446;
+  color:var(--text);
+  padding:12px;
+  font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+.sheetRow{
+  width:100%;
+  text-align:left;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  padding:14px;
+  border-radius:14px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+  cursor:pointer;
+}
+a.sheetRow{ 
+  text-decoration:none; 
+}
+button.sheetRow{
+  appearance:none;
+  -webkit-appearance:none;
+  border:1px solid var(--stroke);
+}
+.sheetRow:hover{ 
+  background: rgba(255,255,255,.06); 
+}
+
+/* caret rotation */
+.sheetToggle .caret{ 
+  transition: transform .2s ease; 
+}
+.sheetToggle[aria-expanded="true"] .caret{ 
+  transform: rotate(-135deg); 
+}
+.sheetToggle[aria-expanded="true"]{
+  color: var(--accent);
+  border-color: rgba(245,197,66,.35);
+}
+
+.sheetGroup{ border:none; }
+.sheetSub a{
+  display:block;
+  margin: 0 0 10px 10px;
+  padding:10px 12px;
+  background: rgba(255,255,255,.02);
+  color:var(--muted);
+  font-weight:700;
+}
+
+/* CHIEF MESSAGE*/
+.chiefMsg{ padding:40px 0; scroll-behavior:smooth; }
+
+.chiefGrid{
+  display:grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap:28px;
+  overflow:hidden;
+  align-items:start;
+  padding:22px;
+  min-height: 750px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+}
+
+.chiefContent{
+  max-height: 750px;
+  overflow-y:auto;
+  padding-right:16px;
+  scrollbar-width: thin;
+}
+.chiefContent::-webkit-scrollbar{ width:6px; }
+
+.chiefPhoto{
+  margin:0;
+  border-radius:18px;
+  overflow:hidden;
+  width:100%;
+  max-width:500px;
+  border:1px solid var(--stroke);
+  box-shadow: var(--shadow);
+}
+.chiefPhoto img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  aspect-ratio: 3 / 4;
+}
+
+.chiefTitle{
+  line-height:1.0;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-left: 100px;
+}
+.chiefTitleTop{
+  color: var(--accent);
+  font-weight:900;
+  font-size: clamp(26px, 3vw, 44px);
+}
+.chiefTitleBottom{
+  color: var(--text);
+  font-weight:900;
+  font-size: clamp(26px, 3vw, 44px);
+}
+
+.chiefLabel{
+  color: var(--accent);
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:21px;
+  margin-left: 100px;
+}
+.chiefText{
+  margin:0 0 10px;
+  color: var(--text);
+  opacity:.92;
+  margin-left: 100px;
+  line-height:1.7;
+  font-size:16px;
+  max-width:78ch;
+  text-align: justify;
+}
+.chiefDivider{
+  height:1px;
+  margin-left: 100px;
+  background: rgba(255,255,255,.12);
+}
+.divider{
+  height:1px;
+  margin:15px 0 0;
+  background: rgba(255,255,255,.12);
+}
+.chiefLink{
+  display:inline-block;
+  margin-left: 100px;
+  color: var(--accent);
+  font-weight:900;
+}
+.chiefLink:hover{ text-decoration: underline; }
+
+.chiefSummary{
+  list-style:none;
+  cursor:pointer;
+  margin-top:12px;
+}
+.chiefSummary::-webkit-details-marker{ display:none; }
+
+.chiefReadMore{ color: var(--accent); font-weight:900; }
+.chiefReadMore:hover{ text-decoration: underline; }
+.chiefWrap[open] .chiefSummary{ display:none; }
+
+.chiefMore{ padding: 0 22px 22px; }
+.chiefLess{
+  margin-top:14px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--accent);
+  font-weight:900;
+  cursor:pointer;
+}
+.chiefLess:hover{ text-decoration: underline; }
+
+.chiefWrap{ overflow:hidden; }
+.chiefTop{ padding:22px; }
+.chiefBlock{ padding:20px; }
+.csign{ margin-left: 100px; }
+
+/*  ANIMATIONS (SAFE)*/
+.fade-in{
+  opacity: .15;
+  transform: translateY(14px);
+  transition: opacity .7s ease, transform .7s ease;
+  will-change: opacity, transform;
+}
+.fade-in.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:all .7s cubic-bezier(.2,.8,.2,1);
+  opacity: 0.4;
+  transform: translateY(22px);
+  transition: opacity .65s ease, transform .65s ease;
+  will-change: opacity, transform;
 }
-
 .reveal.show{
   opacity:1;
-  transform:none;
+  transform: translateY(0);
+}
+.reveal-left{ transform: translateX(-22px); }
+.reveal-right{ transform: translateX(22px); }
+.reveal-zoom{ transform: scale(.98); }
+.reveal-left.show,
+.reveal-right.show,
+.reveal-zoom.show{
+  transform: translateX(0) scale(1);
 }
 
-/* ================= RESPONSIVE ================= */
-@media(max-width:900px){
-  .stats{grid-template-columns:1fr}
-  .head{font-size:50px}
-  .hero h1{font-size:32px}
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    scroll-behavior:auto !important;
+    transition:none !important;
+    animation:none !important;
+  }
+  .fade-in, .reveal{
+    opacity:1 !important;
+    transform:none !important;
+  }
+}
+
+/*  RESPONSIVE*/
+
+@media (max-width: 980px){
+  .navlinks{ display:none; }
+  .burger{ display:inline-flex; align-items:center; justify-content:center; }
+
+  /* prevent overflow from badge margin */
+  .brand{ margin-left: 0; }
+  .brand-badge#brandBadge{
+    width:74px;
+    height:74px;
+    border-radius:10px;
+    transform:none;
+    margin-left: 0;
+  }
+
+  .heroGrid{ grid-template-columns:1fr; padding:18px 16px; }
+  .stats{ grid-template-columns:1fr; }
+
+  .hero,
+  .hero-chief{
+    min-height: 520px;
+    padding:24px 0 18px;
+  }
+.lpsbimg{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.kickerTitle-lpsb{
+  line-height:1.0;
+  text-transform:uppercase;
+  margin-top: auto;
+}
+
+  .hero-lpsb{
+  
+    background-image: none;
+    background-color: #001446;
+  
+  }
+  .kickerTitle{ font-size: clamp(34px, 8vw, 56px); }
+  .head{ font-size: clamp(44px, 12vw, 72px); }
+
+  /* Chief section fixes */
+  .chiefGrid{
+    grid-template-columns:1fr;
+    min-height:auto;
+    overflow:visible;
+    padding:16px;
+    gap:16px;
+  }
+  .chiefPhoto{
+    max-width: 520px;
+    margin:0 auto;
+  }
+  .chiefPhoto img{
+    height:auto;
+    aspect-ratio:16/9;
+  }
+  .chiefContent{
+    max-height:none;
+    overflow:visible;
+    padding-right:0;
+  }
+
+  /* remove large left offsets on mobile */
+  .chiefTitle,
+  .chiefLabel,
+  .chiefText,
+  .chiefDivider,
+  .chiefLink,
+  .csign{
+    margin-left:0 !important;
+  }
+
+  /* Mega menu on mobile */
+  .header.mega-open{ padding-bottom:0; }
+  .mega{
+    width: calc(100vw - 24px);
+    left:12px;
+    right:12px;
+    top: calc(var(--header-h) + 8px);
+    grid-template-columns: 1fr;
+    height:auto;
+  }
+}
+
+/* Medium screens: slightly smaller mega */
+@media (max-width: 1100px){
+  .mega{
+    grid-template-columns: minmax(220px, 300px) 1fr 1fr;
+  }
+  .mega-title{
+    font-size: 18px;
+    padding: 14px;
+  }
+  .mega a{
+    font-size: 18px;
+    padding: 14px;
+  }
+}
+
+/* Smaller screens: 2 columns */
+@media (max-width: 900px){
+  .mega{
+    grid-template-columns: 1fr 1fr;
+  }
+  .mega-title{
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  .mega .megamenu1{ grid-column: 1; }
+  .mega .megamenu2{ grid-column: 2; }
+}
+
+/* Very small: 1 column */
+@media (max-width: 640px){
+  .mega{
+    grid-template-columns: 1fr;
+  }
+  .mega .megamenu1,
+  .mega .megamenu2{
+    grid-column: 1;
+  }
+}
+.findout{
+  padding: 56px 0;
+  background: transparent;
+}
+.findout_container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.findout_title{
+  margin: 0 0 8px;
+  font-size: clamp(28px,3vw,44px);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.findout_subtitle{
+  margin: 0 0 22px;
+  opacity: 0.9;
+}
+.findout_grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 22px;
+}
+.findout_card
+{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.findout_img{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+.findout_label{
+  margin-top: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.findout_more{
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: .9;
+}
+.findout_more:hover .findout_img{
+  transform: scale(1.01);
+  transition: transform .2s ease;
+}
+@media(max-width: 900px){
+  .findout_grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.lpsbimg{
+
+  display: none;
+
 }
 
 </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- HEADER / NAV (injects using header.js)-->
+  <div id="headerMount"></div>
+
+  <!-- Mobile sheet (injects using header.js)-->
+  
+  <!-- MAIN -->
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container heroGrid ">
+        <div>
+          <div class="kickerTitle"><span class="head">2025 ANNUAL REPORT</span></div>
+          <h1>London Police Service<br><br></h1>
+          <p class="lead callout-yellow">
+            From modernizing emergency response to strengthening community partnerships, this report highlights a year of action, progress and commitment to Londoners.
+          </p>
+
+          <div class="heroActions">
+
+          </div>
+        </div>
+
+        <div class="heroCard" aria-label="Hero image placeholder">
+          <div class="heroImg"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section" id="intro">
+      <div class="container ">
+        <div class="kicker"></div>
+        <div class="">
+          <div class="panelInner">
+            <h2><span style="color: #fdc82f;font-size: 26px;">WE ACKNOWLEDGE</span></h2>
+            <p class="muted" style="font-size: 20px;text-align: justify;">We acknowledge that the London Police Service is on the traditional territory of the Anishinaabek, Haudenosaunee, Lūnaapéewak and Attawandaron Nations, on lands connected with many treaties such as the Dish with One Spoon Covenant Wampum. <br><br>
+
+We also acknowledge our neighboring Indigenous communities: the Chippewas of the Thames, Oneida Nation of the Thames and the Munsee-Delaware Nation who continue to be sovereign Nations and who continue to thrive with their own unique languages, cultures, and ceremonies. <br><br>
+
+It is our responsibility as a public institution to contribute toward Truth and Reconciliation by working together respectfully with Indigenous communities through learning and rebuilding positive community services.<br><br></p>
+          </div>
+        </div>
+      </div>
+                  <!-- <div class="divider"></div> -->
+
+    </section>
+    <section class="hero-lpsb">
+              <img class="lpsbimg" src="/lpsb.avif" alt="Message from the Chief"/>
+
+      <div class="container heroGrid ">
+        <div>
+          <div class="kickerTitle-lpsb"> 
+             <h2 class="kickerTitle-lpsb">
+          <span class="chiefTitleTop">A MESSAGE</span><br />
+          <span class="chiefTitleBottom">FROM THE LONDON POLICE SERVICE BOARD</span>
+        </h2><br> 
+</div>  
+        </div>
+      </div>
+    </section>
+
+    <section class="section lpsbsection" id="intro">
+      <div class="container  lpb">
+              
+     
+        <div class="kicker"></div>
+        <p class="muted" style="font-size: 18px; text-align: justify;">
+          <br>We are honoured to present the 2024 Annual Report for the London Police Service.<br><br>
+
+              2024 marked a turning point for the Board, the Service, and the broader landscape of police oversight in Ontario. The Community Safety and Policing Act, 2019 (CSPA), 
+              which came into effect on April 1, 2024, ushered in a series of new legislative changes impacting the duties and responsibilities of police boards in terms of accountability 
+              to the communities they serve. The CSPA introduced a more transparent oversight framework through clear diversity and inclusion expectations, annual reporting requirements, 
+              and the establishment of the Inspectorate General of Policing as an independent authority empowered to monitor and investigate the work of police boards across the province. 
+              Acting under the auspices of the new legislation, the Board moved to facilitate significant organizational and transformational change to the LPS, which will continue to be a 
+              hallmark of the Board’s focus and attention as we continue to move to modernize the Service.<br><br> 
+
+              As the Board reflects on the past year, we are proud to have advanced governance efforts that helped modernize the Service and better address the public safety needs of the City of London. 
+              A series of initiatives and milestones at the Board level have redefined how we serve our members and our community: <br><br></p>
+        
+<details class="lpsb-collapse" id="lpsbMessage">
+  <summary class="lpsb-summery">
+    <span class="lpsb-cta" style="color: #fdc82f;">Read more/less</span>
+  </summary>
+              
+<div class="panelInner">
+<p>
+  <span style="color: #fdc82f;font-size: 21px; font-weight: bold; text-align: justify;">HISTORIC INVESTMENT INTO THE LPS BUDGET</span><br><br>
+        In March 2024, the Board secured a historic increase to the LPS budget, marking the most significant investment into policing in London’s history after years of chronic underfunding. 
+        The increased resources allowed us to hire additional officers, adopt new technologies, and enhance member training, all of which have seen a marked improvement in key policing metrics 
+        such as police response times, a decrease in violent crime, and a reduction in London’s crime severity index (CSI). <br><br>
+
+  <span style="color: #fdc82f;font-size: 21px;font-weight: bold;text-align: justify;">NEW LEADERSHIP</span><br><br>Hiring Deputy Chief Treena Sween and Board Executive Director Stephanie Johanssen in 2024 was part of 
+        the Board’s commitment to cultural change and organizational growth. These hires have strengthened our efforts to establish a more forward-looking approach, supporting organizational change through 
+        utilizing and welcoming outside perspectives.<br><br>
+
+  <span style="color: #fdc82f;font-size: 21px;font-weight: bold;text-align: justify;">GOVERNANCE WORK</span><br><br>In late 2024, the Board initiated a comprehensive policy review to ensure continued responsive policing services 
+        and policies that align with the new legislative standards outlined in the CSPA.  The Board also approved a Board Engagement and Modernization Plan as part of a community-centered approach to ensure that all 
+        members of the public have clear, accessible, and simplified public access to Board information, meetings, and decision-making processes. <br><br>
+
+        The Board acknowledges the collaborative effort required to achieve this degree of transformation. The Board would like to thank each sworn and civilian member for their commitment to this organization and 
+        for implementing our 2024 -2027 Strategic Direction, which prioritizes Our People, Our Community, and Our Work. <br><br>
+
+        We look forward to continuing our work together and building on this momentum for positive change.<br><br>
+        <img src="/lpsb.avif" style="height: 120px;"></img><br>
+        <p style="color: #fdc82f;font-weight: bold;">The London Police Service Board</p>
+      
+      
+</p>
+</div>
+
+</details>
+</div>
+            <!-- <div class="divider"></div> -->
+
+    </section>
 
 
-<!-- ================= HERO ================= -->
-<section class="hero reveal">
+    <section class="section chiefMsg" id="chief">
   <div class="container">
-    <div class="head">2025 ANNUAL REPORT</div>
-    <h1>London Police Service</h1>
-    <p class="lead">
-      From modernizing emergency response to strengthening community partnerships, this report highlights a year of action and progress.
-    </p>
+    <div class="chiefGrid panel">
+      
+      <!-- LEFT: Photo -->
+      <figure class="chiefPhoto">
+        <img src="/chief.avif" alt="Message from the Chief" />
+      </figure>
+
+      <!-- RIGHT: Content -->
+  
+      <div class="chiefContent">
+        <h2 class="chiefTitle ">
+          <span class="chiefTitleTop">A MESSAGE</span><br />
+          <span class="chiefTitleBottom">FROM THE CHIEF</span>
+        </h2><br><br>
+
+        <div class="chiefBlock">
+          <div class="chiefLabel">INNOVATION</div>
+          <p class="chiefText">
+            The London Police Service made significant growth, notable accomplishments, and tangible progress, achieved through the support of our Police Service Board, the strength of our 
+            community partnerships, and most importantly, the dedication and hard work of our members.
+          </p>
+          <p class="chiefText">
+            Our sworn officers and civilian police professionals have embraced innovation and compassion in equal measures.  With the implementation of Next-Generation 911 and the expansion of 
+            our Digital Evidence Management System, we continue to modernize our approach to emergency response and information management, always placing the safety and well-being of Londoners 
+            at the forefront of everything we do.
+          </p>
+        </div>
+
+        <div class="chiefBlock">
+          <div class="chiefLabel">STRENGTHENING COMMUNITY SAFETY THROUGH ADEQUATE STAFFING</div>
+          <p class="chiefText">
+            A basis of our commitment to community safety is increasing our officer complement.  For far too long, our Service has operated as one of the most understaffed police organizations in Ontario.  
+            Last year, we made significant strides by hiring 69 new officers, 35 of which were for increased growth positions, further advancing our multi-year plan toward achieving proper staffing levels.  
+            As a direct result, and for the first time in four years, we witnessed improvements in police response times across all categories, demonstrating our continued dedication to enhancing public safety 
+            and providing timely support when our community needs us most.
+          </p>
+        </div>
+  <div class="chiefBlock">
+          <div class="chiefLabel">Transforming Culture, Building Trust</div>
+          <p class="chiefText">
+              Our ongoing culture transformation remains a priority.  Leadership at all levels emphasizes inclusion, diversity, and community trust as essential elements of effective policing.  
+              By focusing on meaningful community engagement, we ensure that our strategies resonate with the diverse communities we proudly serve.  Our approach is not just about keeping citizens safe, 
+              it is about making sure they feel safe, heard, and respected.          </p>
+  </div>
+
+<div class="chiefBlock">
+          <div class="chiefLabel">Supporting Our Members, Reflecting Our Community
+</div>
+          <p class="chiefText">
+              Through expanded outreach, mentorship programs, and trauma-informed training, we continue to build a police service that genuinely reflects the resilience, diversity, and strength of our community.  
+              Our new service delivery model, launched last year, focuses our efforts precisely on where they can make the greatest difference - reducing harm, supporting victims, and fostering safer neighborhoods 
+              through intelligent, data-driven strategies.  Our results speak clearly: fatal motor vehicle collisions were reduced by 45%, and gun violence saw a remarkable 48% decline compared to 2023.  
+              These achievements represent real lives saved, fewer tragedies, and safer streets for all Londoners. </p>       
+
+</div>
+        
+<div class="chiefBlock">
+      <div class="chiefLabel">A Personal Commitment to Service and Trust</div>
+          <p class="chiefText">
+              On a personal note, as someone who arrived in Canada as a child-refugee, I deeply understand the profound impact of feeling welcomed, protected, and supported.  This experience shapes my belief that at 
+              its very core, policing is an act of service defined by humility, empathy, and trust.
+
+              I am immensely proud of our members, whose commitment and integrity continue to build and maintain the trust of our community every day.  To our Police Service Board, our Deputy Chiefs, and our 
+              Senior Leadership Team, thank you for your confidence, dedication, and partnership.  To our dedicated members, know how deeply your efforts are appreciated and valued.  And to our community, 
+              thank you for your ongoing support as we continue to evolve into an even more compassionate, responsive, and effective police service.
+
+              Together, I am confident we will make London safer and stronger each year. <br><br>Sincerely, </p>
+
+<p class="csign">
+  <img class="chief-sign" src="images/sign.avif"> <br> <span style="font-weight: bold; color: #fdc82f;">Chief Thai Truong</span><br><span style="font-size: 14px;">London Police Service</span>
+</p></div>
+      
+</div>
+
+    </div>
   </div>
 </section>
 
-
-<!-- ================= INTRO ================= -->
-<section class="section reveal">
-  <div class="container panel">
-    <h2 style="color:#fdc82f;">WE ACKNOWLEDGE</h2>
-    <p class="label">
-      We acknowledge that the London Police Service is on the traditional territory of the Anishinaabek, Haudenosaunee, Lūnaapéewak and Attawandaron Nations...
-    </p>
-  </div>
-</section>
-
-
-<!-- ================= NUMBERS ================= -->
-<section class="section reveal">
-  <div class="container">
-    <h2 style="color:#fdc82f;">BY THE NUMBERS</h2>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="value">13.7%</div>
-        <div class="label">Drop in Crime Severity Index</div>
+    <!-- BY THE NUMBERS -->
+    <section class="section">
+      <div class="container ">
+        <div class="kicker"><span style="color: #fdc82f;">BY THE NUMBERS</span></div>
+        <div class="stats">
+          <div class="stat"><div class="value">13.7%</div><div class="label">Drop in <span style="color: #fdc82f;">Crime Severity Index</span><br><br></div><div class="label-desc">A meaningful drop in crime severity index reflects our focus on crime prevention, community partnership, and law enforcement across London. While most jurisdictions increased in crime severity index, London had the largest reduction in Ontario and across Canada.</div></div>
+          <div class="stat"><div class="value">228,150</div><div class="label">9-1-1 calls <span style="color: #fdc82f;">Answered</span><br><br></div><div class="label-desc">In 2024, we received 228,150 9-1-1 calls, or approximately 650 calls per day. Police resources were required for 54,434 of these, translating to an average of 149 incidents daily.</div></div>
+          <div class="stat"><div class="value">#1</div><div class="label"><span style="color: #fdc82f;">First single-Tier police service in Ontario</span> to launch Next-Generation 911<br><br></div><div class="label-desc">With real-time location tracking and multimedia emergency communication, the LPS is leading the way with smarter, faster, more accessible public safety technology.</div></div>
+        </div>
       </div>
+    </section>
 
-      <div class="stat">
-        <div class="value">228,150</div>
-        <div class="label">9-1-1 Calls</div>
+    <!--001 Safety -->
+    <section class="section" id="safety">
+      <div class="container">
+        <div class="panel">
+          <div class="panelInner">
+            <div class="kicker">SAFETY</div>
+            <h2>Community Safety and Specialized Investigations</h2>
+            <p>Evidence-based policing, stronger partnerships and specialized investigations.</p>
+
+            <div class="blocks">
+              <a class="block" id="safety-1" href="/Safety/Crime_Trends_And_Clearance_Rates/Crime_Trends_And_Clearance_Rates.html"><div><strong>Crime Trends and Clearance Rates</strong><span>Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="safety-2" href="/Safety/Crime Analysis/Crime_Analysis.html"><div><strong>Crime Analysis</strong><span>Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="safety-3" href="/Safety/Victim Support/Victim_Support.html"><div><strong>Victim Support</strong><span>Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="safety-3" href="/Safety/Specialized Initiatives/Specialized Initiatives.html"><div><strong>Specialized Initiatives</strong><span>Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="safety-3" href="/Safety/Joint Forces Operations/Joint_Forces_Operations.html"><div><strong>Joint Forces Operations</strong><span>Read more</span></div><span class="arrow" aria-hidden="true"></span></a>   
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="stat">
-        <div class="value">#1</div>
-        <div class="label">Next-Gen 911 Launch</div>
+    <!-- 002 Trust -->
+    <section class="section" id="trust">
+      <div class="container">
+        <div class="panel">
+          <div class="panelInner">
+            <div class="kicker">TRUST</div>
+            <h2>Community Trust and Frontline Operations</h2>
+            <p>Presence, action and listening—strengthening relationships and improving accessibility.</p>
+
+            <div class="blocks">
+              <a class="block" id="trust-1" href="/Trust/Enhancing emergency reponse/enhancing_emergency_response.html"><div><strong>Enhancing Emergency Response</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="trust-2" href="/Trust/Supporting Individual At Risk/supporting_individual_risk.html"><div><strong>Supporting Individuals At Risk</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="trust-3" href="/Trust/Addressing Safety Concerns/addressing_safety_concern.html"><div><strong>Addressing Safety Concerns</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="trust-4" href="/Trust/Crime Prevention/crime_prevention.html"><div><strong>Crime Prevention</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="trust-5" href="/Trust/Community Connections/community_connections.html"><div><strong>Community Connections</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- 003 Wellness -->
+    <section class="section" id="wellness">
+      <div class="container">
+        <div class="panel">
+          <div class="panelInner">
+            <div class="kicker">WELLNESS</div>
+            <h2>Organizational Wellness and Performance</h2>
+            <p>Recruitment, training and modernization—supporting members to serve with excellence.</p>
 
-<!-- ================= SAFETY ================= -->
-<section class="section reveal">
-  <div class="container panel">
-    <h2>SAFETY</h2>
+            <div class="blocks">
+              <a class="block" id="wellness-1" href="/Wellness/Calls For Service/calls_for_service.html"><div><strong>Calls for Service</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="wellness-2" href="/Wellness/Workforce Development/workforce_development.html"><div><strong>Workforce Development</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="wellness-2" href="/Wellness/Performance Accountability/performance_accountability.html"><div><strong>Performance &amp; Accountability</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="wellness-2" href="/Wellness/Modernizing Policing/modernizing_policing.html"><div><strong>Modernizing Policing</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+              <a class="block" id="wellness-2" href="/Wellness/Awards & Recognition/awards_&_recognition.html"><div><strong>Awards &amp; Recognition</strong><span class="muted">Read more</span></div><span class="arrow" aria-hidden="true"></span></a>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="blocks">
-      <div class="block"><span>Crime Trends</span> →</div>
-      <div class="block"><span>Crime Prevention</span> →</div>
-      <div class="block"><span>Victim Support</span> →</div>
-    </div>
-  </div>
-</section>
+    <!-- FULL -->
+    <section class="section" id="full">
+      <div class="container ">
+        <div class="panel">
+          <div class="panelInner">
+            <h2>Full Report</h2>
+            <p>Link this button to the PDF.</p>
+            <a class="cta" href="#" aria-label="Download full report PDF">Download PDF</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <div id="footerMount"></div> 
 
-<!-- ================= TRUST ================= -->
-<section class="section reveal">
-  <div class="container panel">
-    <h2>TRUST</h2>
-
-    <div class="blocks">
-      <div class="block"><span>Emergency Response</span> →</div>
-      <div class="block"><span>Community Safety</span> →</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ================= WELLNESS ================= -->
-<section class="section reveal">
-  <div class="container panel">
-    <h2>WELLNESS</h2>
-
-    <div class="blocks">
-      <div class="block"><span>Calls for Service</span> →</div>
-      <div class="block"><span>Workforce Development</span> →</div>
-    </div>
-  </div>
-</section>
-
-
-<script>
-
-/* ================= GOD MODE REVEAL ================= */
-(function(){
-
-const elements = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-      observer.unobserve(entry.target);
-    }
-  });
-},{
-  threshold:0.15,
-  rootMargin:"0px 0px -10% 0px"
-});
-
-elements.forEach(el=>observer.observe(el));
-
-})();
-
-</script>
+  </main>
+  
+<script src="/js/header.js"></script>
+  <script src="/js/app.js"></script>
