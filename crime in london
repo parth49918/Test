@@ -1,3 +1,62 @@
+<style>
+@media (max-width: 768px){
+  .lpsb-grid{
+    display:block !important;
+  }
+
+  .lpsb-col{
+    display:block !important;
+    width:100% !important;
+  }
+
+  .lpsb-col img{
+    width:100% !important;
+    height:auto !important;
+    margin-bottom:16px;
+  }
+}
+</style>
+
+<div class="lpsb-grid" style="
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:16px;
+  margin-top:20px;
+">
+
+  <!-- COLUMN 1 -->
+  <div class="lpsb-col" style="display:flex; flex-direction:column; gap:16px;">
+    <img src="/Safety/Crime-Prevention/jcfy.jpg" style="width:100%; height:160px; object-fit:cover; border-radius:10px;">
+    <img src="/Safety/Crime-Prevention/jcfy2.jpg" style="width:100%; height:160px; object-fit:cover; border-radius:10px;">
+  </div>
+
+  <!-- COLUMN 2 -->
+  <div class="lpsb-col" style="display:flex; flex-direction:column; gap:16px;">
+    <img src="/Safety/Crime-Prevention/jcfy3.jpg" style="width:100%; height:160px; object-fit:cover; border-radius:10px;">
+    <img src="/Safety/Crime-Prevention/jcfy4.jpg" style="width:100%; height:160px; object-fit:cover; border-radius:10px;">
+  </div>
+
+  <!-- COLUMN 3 -->
+  <div class="lpsb-col">
+    <img src="/Safety/Crime-Prevention/jcfy5.jpg" style="
+      width:100%;
+      height:336px;
+      object-fit:cover;
+      border-radius:10px;
+    ">
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 <div style="
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
