@@ -2,6 +2,315 @@
 :root{
   --bg:#001446;
   --text:#eaf1ff;
+  --accent:#f5c542;
+  --stroke:rgba(255,255,255,.12);
+}
+
+/* BODY OFFSET */
+body{
+  margin:0;
+  padding-top:120px;
+  background:#001446;
+  color:white;
+  font-family:Segoe UI;
+}
+
+/* HEADER */
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:100px;
+  background:rgba(0,20,70,.95);
+  backdrop-filter:blur(12px);
+  z-index:9999;
+  transition:.3s ease;
+  border-bottom:1px solid var(--stroke);
+}
+
+/* NAVBAR */
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:100%;
+  padding:0 40px;
+}
+
+/* ================= LOGO MAGIC ================= */
+.brand{
+  position:relative;
+  z-index:10001;
+}
+
+/* BIG LOGO DEFAULT */
+.brand-badge{
+  position:absolute;
+  top:-40px;
+  left:0;
+  width:150px;
+  height:150px;
+  background:url("../images/681a2ff7ca0a8267756c96d2_beb7e5d2dde3919dc07c5152557f336b_LPS-Badge.avif") center/contain no-repeat;
+  transition:all .35s ease;
+  filter:drop-shadow(0 10px 25px rgba(0,0,0,.4));
+}
+
+/* SCROLLED STATE */
+.header.scrolled .brand-badge{
+  top:10px;
+  width:60px;
+  height:60px;
+}
+
+/* NAV LINKS */
+.navlinks{
+  display:flex;
+  gap:30px;
+  align-items:center;
+}
+
+.navbtn{
+  background:none;
+  border:none;
+  color:white;
+  font-weight:800;
+  font-size:18px;
+  cursor:pointer;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.navbtn:hover{
+  color:var(--accent);
+}
+
+/* CARET */
+.caret{
+  width:8px;height:8px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+  transform:rotate(45deg);
+}
+
+/* ================= MEGA MENU ================= */
+.dd{position:relative;}
+
+.mega{
+  position:fixed;
+  left:0;
+  right:0;
+  top:100px;
+  background:#001446;
+  padding:30px 60px;
+  display:none;
+  grid-template-columns:300px 1fr 1fr;
+  gap:30px;
+  border-top:1px solid var(--stroke);
+}
+
+.dd.open .mega{
+  display:grid;
+}
+
+.mega-title{
+  font-size:26px;
+  font-weight:900;
+}
+
+.mega a{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  color:white;
+}
+
+.mega a:hover{
+  color:var(--accent);
+}
+
+.pill{
+  border:1px solid var(--stroke);
+  border-radius:999px;
+  padding:2px 8px;
+  font-size:12px;
+}
+
+/* ================= MOBILE ================= */
+.burger{
+  display:none;
+  font-size:22px;
+  background:none;
+  border:none;
+  color:white;
+}
+
+/* MOBILE MENU */
+.mobile{
+  position:fixed;
+  top:100px;
+  left:0;
+  right:0;
+  background:#001446;
+  display:none;
+  flex-direction:column;
+  padding:20px;
+  gap:15px;
+}
+
+.mobile.open{
+  display:flex;
+}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+
+  .navlinks{display:none;}
+  .burger{display:block;}
+
+  .brand-badge{
+    top:10px;
+    width:70px;
+    height:70px;
+  }
+
+}
+</style>
+
+<header class="header" id="header">
+
+  <div class="navbar">
+
+    <!-- LOGO -->
+    <div class="brand">
+      <div class="brand-badge"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="navlinks">
+
+      <button class="navbtn">INTRODUCTION</button>
+
+      <div class="dd">
+        <button class="navbtn">SAFETY <span class="caret"></span></button>
+        <div class="mega">
+          <div class="mega-title">COMMUNITY SAFETY</div>
+          <div>
+            <a href="#">Crime in London <span class="pill">01</span></a>
+            <a href="#">Crime Prevention <span class="pill">02</span></a>
+            <a href="#">Victim Support <span class="pill">03</span></a>
+          </div>
+          <div>
+            <a href="#">Serious Crime <span class="pill">04</span></a>
+            <a href="#">Joint Operations <span class="pill">05</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd">
+        <button class="navbtn">TRUST <span class="caret"></span></button>
+        <div class="mega">
+          <div class="mega-title">TRUST</div>
+          <div>
+            <a href="#">Emergency</a>
+            <a href="#">At Risk</a>
+          </div>
+          <div>
+            <a href="#">Community</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd">
+        <button class="navbtn">WELLNESS <span class="caret"></span></button>
+        <div class="mega">
+          <div class="mega-title">WELLNESS</div>
+          <div>
+            <a href="#">Calls</a>
+            <a href="#">Workforce</a>
+          </div>
+          <div>
+            <a href="#">Performance</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="navbtn">FULL REPORT</button>
+
+    </nav>
+
+    <!-- BURGER -->
+    <button class="burger" id="burger">☰</button>
+
+  </div>
+
+  <!-- MOBILE -->
+  <div class="mobile" id="mobileMenu">
+    <button>INTRODUCTION</button>
+    <button>SAFETY</button>
+    <button>TRUST</button>
+    <button>WELLNESS</button>
+    <button>FULL REPORT</button>
+  </div>
+
+</header>
+
+<script>
+(function(){
+
+/* ================= DROPDOWN ================= */
+document.querySelectorAll(".dd").forEach(dd=>{
+  const btn = dd.querySelector(".navbtn");
+
+  btn.addEventListener("click", (e)=>{
+    e.stopPropagation();
+
+    document.querySelectorAll(".dd").forEach(x=>{
+      if(x!==dd) x.classList.remove("open");
+    });
+
+    dd.classList.toggle("open");
+  });
+});
+
+/* CLOSE OUTSIDE */
+document.addEventListener("click", ()=>{
+  document.querySelectorAll(".dd").forEach(dd=>dd.classList.remove("open"));
+});
+
+/* ================= SCROLL LOGO EFFECT ================= */
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", ()=>{
+  if(window.scrollY > 80){
+    header.classList.add("scrolled");
+  }else{
+    header.classList.remove("scrolled");
+  }
+});
+
+/* ================= MOBILE ================= */
+const burger = document.getElementById("burger");
+const mobile = document.getElementById("mobileMenu");
+
+burger.onclick = ()=>{
+  mobile.classList.toggle("open");
+};
+
+})();
+</script
+
+
+
+
+
+
+<style>
+:root{
+  --bg:#001446;
+  --text:#eaf1ff;
   --muted:#b9c7e6;
   --accent:#f5c542;
   --stroke:rgba(255,255,255,.12);
