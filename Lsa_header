@@ -2,6 +2,633 @@
 :root{
   --bg:#001446;
   --text:#eaf1ff;
+  --muted:#b9c7e6;
+  --accent:#f5c542;
+  --stroke:rgba(255,255,255,.12);
+}
+
+/* BASE */
+body{
+  margin:0;
+  padding-top:110px;
+  background:#001446;
+  font-family:Segoe UI, system-ui;
+  color:var(--text);
+}
+
+/* HEADER */
+.header{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:100px;
+  background:linear-gradient(180deg,#001446,#001446ee);
+  backdrop-filter:blur(12px);
+  z-index:9999;
+  border-bottom:1px solid var(--stroke);
+  transition:.3s ease;
+}
+
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:100%;
+  padding:0 50px;
+}
+
+/* LOGO */
+.brand{
+  position:relative;
+}
+.brand-badge{
+  position:absolute;
+  top:-45px;
+  width:150px;
+  height:150px;
+  background:url("/_webfiles/your-badge.png") center/contain no-repeat;
+  transition:.35s ease;
+}
+.header.scrolled .brand-badge{
+  top:15px;
+  width:60px;
+  height:60px;
+}
+
+/* NAV */
+.navlinks{
+  display:flex;
+  gap:40px;
+  align-items:center;
+}
+
+.navbtn{
+  background:none;
+  border:none;
+  color:var(--text);
+  font-size:20px;
+  font-weight:500;
+  letter-spacing:.5px;
+  cursor:pointer;
+  position:relative;
+  padding:6px 0;
+}
+
+.navbtn::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:2px;
+  background:var(--accent);
+  transition:.3s;
+}
+.navbtn:hover::after{
+  width:100%;
+}
+
+.caret{
+  margin-left:6px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+  width:8px;height:8px;
+  transform:rotate(45deg);
+}
+
+/* MEGA MENU */
+.dd{position:static;}
+
+.mega{
+  position:fixed;
+  left:0;
+  right:0;
+  top:100px;
+  width:100%;
+  background:#001446;
+  padding:40px 80px;
+  display:none;
+
+  grid-template-columns: 350px 1fr 1fr;
+  gap:60px;
+
+  border-top:1px solid var(--stroke);
+}
+.dd.open .mega{
+  display:grid;
+}
+
+.mega-title{
+  font-size:26px;
+  font-weight:500;
+  line-height:1.4;
+  color:var(--muted);
+}
+
+.mega a{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  font-size:18px;
+  color:var(--text);
+  text-decoration:none;
+  transition:.25s;
+}
+.mega a:hover{
+  color:var(--accent);
+  transform:translateX(6px);
+}
+
+.pill{
+  font-size:12px;
+  border:1px solid var(--stroke);
+  border-radius:999px;
+  padding:3px 8px;
+  opacity:.7;
+}
+
+/* MOBILE */
+.burger{
+  display:none;
+  font-size:26px;
+  background:none;
+  border:none;
+  color:white;
+}
+
+.mobile{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:90%;
+  height:100%;
+  background:#001446;
+  padding:30px;
+  transition:.4s;
+  z-index:99999;
+}
+.mobile.open{
+  right:0;
+}
+
+.mobile h3{
+  font-weight:500;
+  margin-bottom:20px;
+}
+
+.mobile-item{
+  border:1px solid var(--stroke);
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:14px;
+}
+
+.mobile-header{
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.mobile-content{
+  display:none;
+  margin-top:10px;
+}
+.mobile-item.open .mobile-content{
+  display:block;
+}
+
+.mobile-content a{
+  display:block;
+  padding:10px 0;
+  font-size:15px;
+  color:var(--muted);
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+  .navlinks{display:none;}
+  .burger{display:block;}
+
+  .brand-badge{
+    top:10px;
+    width:70px;
+    height:70px;
+  }
+}
+</style>
+
+<header class="header" id="header">
+  <div class="navbar">
+
+    <div class="brand">
+      <div class="brand-badge"></div>
+    </div>
+
+    <nav class="navlinks">
+
+      <button class="navbtn">INTRODUCTION</button>
+
+      <div class="dd">
+        <button class="navbtn">SAFETY <span class="caret"></span></button>
+        <div class="mega">
+          <div class="mega-title">Community Safety and Specialized Investigations</div>
+          <div>
+            <a href="#">Crime in London <span class="pill">01</span></a>
+            <a href="#">Crime Prevention <span class="pill">02</span></a>
+            <a href="#">Victim Support <span class="pill">03</span></a>
+          </div>
+          <div>
+            <a href="#">Serious Crime <span class="pill">04</span></a>
+            <a href="#">Joint Operations <span class="pill">05</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd">
+        <button class="navbtn">TRUST <span class="caret"></span></button>
+        <div class="mega">
+          <div class="mega-title">Community Trust</div>
+          <div>
+            <a href="#">Emergency Response</a>
+            <a href="#">At Risk</a>
+          </div>
+          <div>
+            <a href="#">Community</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dd">
+        <button class="navbtn">WELLNESS <span class="caret"></span></button>
+        <div class="mega">
+          <div class="mega-title">Wellness</div>
+          <div>
+            <a href="#">Calls</a>
+            <a href="#">Workforce</a>
+          </div>
+          <div>
+            <a href="#">Performance</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="navbtn">FULL REPORT</button>
+
+    </nav>
+
+    <button class="burger" id="burger">☰</button>
+
+  </div>
+</header>
+
+<div class="mobile" id="mobile">
+  <div class="close" id="close">✕</div>
+
+  <h3>2025 Annual Report</h3>
+
+  <div class="mobile-item">
+    <div class="mobile-header">Introduction</div>
+  </div>
+
+  <div class="mobile-item">
+    <div class="mobile-header">Safety</div>
+    <div class="mobile-content">
+      <a href="#">Crime in London</a>
+      <a href="#">Crime Prevention</a>
+      <a href="#">Victim Support</a>
+    </div>
+  </div>
+
+  <div class="mobile-item">
+    <div class="mobile-header">Trust</div>
+    <div class="mobile-content">
+      <a href="#">Emergency</a>
+      <a href="#">Community</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+
+document.querySelectorAll(".dd").forEach(dd=>{
+  const btn = dd.querySelector(".navbtn");
+
+  btn.onclick = (e)=>{
+    e.stopPropagation();
+
+    document.querySelectorAll(".dd").forEach(x=>{
+      if(x!==dd) x.classList.remove("open");
+    });
+
+    dd.classList.toggle("open");
+  };
+});
+
+document.onclick = ()=>{
+  document.querySelectorAll(".dd").forEach(dd=>dd.classList.remove("open"));
+};
+
+const header = document.getElementById("header");
+window.addEventListener("scroll", ()=>{
+  if(window.scrollY>80){
+    header.classList.add("scrolled");
+  }else{
+    header.classList.remove("scrolled");
+  }
+});
+
+const burger = document.getElementById("burger");
+const mobile = document.getElementById("mobile");
+const close = document.getElementById("close");
+
+burger.onclick = ()=> mobile.classList.add("open");
+close.onclick = ()=> mobile.classList.remove("open");
+
+document.querySelectorAll(".mobile-item").forEach(item=>{
+  item.onclick = ()=>{
+    item.classList.toggle("open");
+  };
+});
+
+})();
+</script>
+
+
+
+
+
+
+
+
+
+<style>
+:root{
+  --bg:#001446;
+  --text:#eaf1ff;
+  --muted:#b9c7e6;
+  --accent:#f5c542;
+  --stroke:rgba(255,255,255,.12);
+}
+
+/* BASE */
+body{
+  margin:0;
+  padding-top:110px;
+  background:#001446;
+  font-family:Segoe UI, system-ui;
+  color:var(--text);
+}
+
+/* ================= HEADER ================= */
+.header{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:100px;
+  background:linear-gradient(180deg,#001446,#001446ee);
+  backdrop-filter:blur(12px);
+  z-index:9999;
+  border-bottom:1px solid var(--stroke);
+  transition:.3s ease;
+}
+
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:100%;
+  padding:0 50px;
+}
+
+/* ================= LOGO ================= */
+.brand{
+  position:relative;
+}
+
+.brand-badge{
+  position:absolute;
+  top:-45px;
+  width:150px;
+  height:150px;
+  background:url("../images/681a2ff7ca0a8267756c96d2_beb7e5d2dde3919dc07c5152557f336b_LPS-Badge.avif") center/contain no-repeat;
+  transition:.35s ease;
+}
+
+.header.scrolled .brand-badge{
+  top:15px;
+  width:60px;
+  height:60px;
+}
+
+/* ================= NAV ================= */
+.navlinks{
+  display:flex;
+  gap:40px;
+  align-items:center;
+}
+
+/* BIG CLEAN TEXT (NOT BOLD HEAVY) */
+.navbtn{
+  background:none;
+  border:none;
+  color:var(--text);
+  font-size:20px;
+  font-weight:500;
+  letter-spacing:.5px;
+  cursor:pointer;
+  position:relative;
+  padding:6px 0;
+}
+
+/* SUBTLE UNDERLINE HOVER */
+.navbtn::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0%;
+  height:2px;
+  background:var(--accent);
+  transition:.3s;
+}
+
+.navbtn:hover::after{
+  width:100%;
+}
+
+/* CARET */
+.caret{
+  margin-left:6px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+  width:8px;height:8px;
+  transform:rotate(45deg);
+}
+
+/* ================= MEGA MENU ================= */
+.dd{position:static;}
+
+.mega{
+  position:fixed;
+  left:0;
+  right:0;
+  top:100px;
+  width:100%;
+  background:#001446;
+  padding:40px 80px;
+  display:none;
+
+  grid-template-columns: 350px 1fr 1fr;
+  gap:60px;
+
+  border-top:1px solid var(--stroke);
+}
+
+/* FULL WIDTH OPEN */
+.dd.open .mega{
+  display:grid;
+}
+
+/* LEFT BIG TITLE */
+.mega-title{
+  font-size:26px;
+  font-weight:600;
+  line-height:1.4;
+  color:var(--muted);
+}
+
+/* LINKS */
+.mega a{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  font-size:18px;
+  color:var(--text);
+  text-decoration:none;
+  transition:.25s;
+}
+
+.mega a:hover{
+  color:var(--accent);
+  transform:translateX(6px);
+}
+
+/* NUMBER */
+.pill{
+  font-size:12px;
+  border:1px solid var(--stroke);
+  border-radius:999px;
+  padding:3px 8px;
+  opacity:.7;
+}
+
+/* ================= MOBILE ================= */
+.burger{
+  display:none;
+  font-size:24px;
+  background:none;
+  border:none;
+  color:white;
+}
+
+/* MOBILE PANEL */
+.mobile{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:90%;
+  height:100%;
+  background:#001446;
+  padding:30px;
+  transition:.4s;
+  z-index:99999;
+}
+
+.mobile.open{
+  right:0;
+}
+
+/* MOBILE TITLE */
+.mobile h3{
+  font-weight:500;
+  margin-bottom:20px;
+}
+
+/* ACCORDION */
+.mobile-item{
+  border:1px solid var(--stroke);
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:14px;
+}
+
+.mobile-header{
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.mobile-content{
+  display:none;
+  margin-top:10px;
+}
+
+.mobile-item.open .mobile-content{
+  display:block;
+}
+
+.mobile-content a{
+  display:block;
+  padding:10px 0;
+  font-size:15px;
+  color:var(--muted);
+}
+
+/* CLOSE BTN */
+.close{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:980px){
+  .navlinks{display:none;}
+  .burger{display:block;}
+
+  .brand-badge{
+    top:10px;
+    width:70px;
+    height:70px;
+  }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+:root{
+  --bg:#001446;
+  --text:#eaf1ff;
   --accent:#f5c542;
   --stroke:rgba(255,255,255,.12);
 }
