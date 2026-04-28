@@ -6,6 +6,285 @@
 <section style="
 position:relative;
 width:100%;
+min-height:520px;
+display:flex;
+align-items:center;
+overflow:hidden;
+background:#001446;
+">
+
+<!-- RIGHT IMAGE (CLEAR, NOT BLUR) -->
+<div style="
+position:absolute;
+right:0;
+top:0;
+width:48%;
+height:100%;
+background:url('/Safety/Crime-in-London/crimeinlondon.jpg') right center/cover no-repeat;
+"></div>
+
+<!-- LEFT CONTENT -->
+<div style="
+max-width:1200px;
+margin:auto;
+width:100%;
+padding:60px 40px;
+position:relative;
+z-index:2;
+">
+
+<div style="max-width:620px;">
+
+<h1 style="
+font-size:clamp(40px,5vw,64px);
+line-height:1.05;
+font-weight:900;
+margin-bottom:20px;
+">
+<span style="color:#f5c542;">Community Safety</span><br>
+<span style="color:#eaf1ff;">and Specialized Investigations</span>
+</h1>
+
+<p style="
+font-size:18px;
+line-height:1.7;
+color:#cbd5f5;
+border-left:3px solid #f5c542;
+padding-left:18px;
+">
+Every day, we focus on responding to calls for service and supporting community safety. By using data and evidence to guide our work, building strong partnerships, and conducting specialized crime investigations, the LPS is working to reduce crime, support victims, and help keep neighbourhoods safe across the city.
+</p>
+
+</div>
+</div>
+
+</section>
+
+<!-- ================= MAIN ================= -->
+<main style="
+background:#001446;
+padding:60px 40px;
+">
+
+<div style="max-width:1200px;margin:auto;">
+
+<h2 style="
+font-size:32px;
+color:#eaf1ff;
+margin-bottom:30px;
+">
+Crime in London
+</h2>
+
+<!-- ================= BLOCK 1 ================= -->
+<div style="
+display:flex;
+gap:18px;
+margin-bottom:50px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:18px;
+padding:26px;
+backdrop-filter:blur(10px);
+">
+
+<div style="width:5px;background:#f5c542;border-radius:10px;"></div>
+
+<div style="flex:1;">
+
+<h3 style="color:#f5c542;font-size:22px;margin-bottom:14px;">
+Crime Trends and Clearance Rates
+</h3>
+
+<p style="color:#e2e8f0;line-height:1.7;">
+To support informed decision-making and effective policing, the LPS monitors crime data and clearance rates annually to identify public safety trends and evaluate service delivery.
+</p>
+
+<table style="
+width:100%;
+margin-top:25px;
+border-collapse:collapse;
+background:rgba(255,255,255,0.06);
+border-radius:12px;
+overflow:hidden;
+font-size:14px;
+">
+
+<thead>
+<tr style="background:#f5c542;color:#001446;font-weight:700;">
+<th style="padding:14px;text-align:left;">Metric</th>
+<th style="padding:14px;">2022</th>
+<th style="padding:14px;">2023</th>
+<th style="padding:14px;">2024</th>
+<th style="padding:14px;">3-Year Avg</th>
+</tr>
+</thead>
+
+<tbody style="color:#f8fafc;">
+
+<tr><td style="padding:12px;">Total Criminal Code Cases</td><td>28,767</td><td>27,487</td><td>27,093</td><td>27,782</td></tr>
+<tr><td style="padding:12px;">Total Violent Crimes</td><td>5,103</td><td>5,003</td><td>5,028</td><td>5,045</td></tr>
+<tr><td style="padding:12px;">Violent Clearance Rate</td><td>52.8%</td><td>58.4%</td><td>62.0%</td><td>57.7%</td></tr>
+<tr><td style="padding:12px;">Total Property Crimes</td><td>19,239</td><td>17,708</td><td>16,946</td><td>17,964</td></tr>
+<tr><td style="padding:12px;">Property Clearance Rate</td><td>13.7%</td><td>14.9%</td><td>17.1%</td><td>15.2%</td></tr>
+<tr><td style="padding:12px;">Youth Charged</td><td>257</td><td>381</td><td>498</td><td>379</td></tr>
+<tr><td style="padding:12px;">Adults Charged</td><td>5,672</td><td>6,446</td><td>6,999</td><td>6,372</td></tr>
+
+</tbody>
+</table>
+
+<p style="margin-top:20px;color:#e2e8f0;">
+From 2022 to 2024, overall Criminal Code cases declined while clearance rates improved significantly, reflecting stronger enforcement and investigative outcomes.
+</p>
+
+</div>
+</div>
+
+<!-- ================= BLOCK 2 ================= -->
+<div style="
+display:flex;
+gap:18px;
+margin-bottom:50px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:18px;
+padding:26px;
+backdrop-filter:blur(10px);
+">
+
+<div style="width:5px;background:#f5c542;border-radius:10px;"></div>
+
+<div style="flex:1;">
+
+<h3 style="color:#f5c542;font-size:22px;margin-bottom:14px;">
+CSI Analysis
+</h3>
+
+<p style="color:#e2e8f0;">
+In 2024, the Crime Severity Index (CSI) decreased by 6.9%, marking continued progress in reducing both violent and non-violent crime.
+</p>
+
+<table style="
+width:100%;
+margin-top:25px;
+border-collapse:collapse;
+background:rgba(255,255,255,0.06);
+border-radius:12px;
+overflow:hidden;
+">
+
+<thead>
+<tr style="background:#f5c542;color:#001446;">
+<th style="padding:14px;text-align:left;">Metric</th>
+<th>London</th>
+<th>Ontario</th>
+<th>Canada</th>
+</tr>
+</thead>
+
+<tbody style="color:#f8fafc;">
+<tr><td style="padding:12px;">Crime Severity Index</td><td>65.89</td><td>60.69</td><td>77.89</td></tr>
+<tr><td style="padding:12px;">Violent Crime Severity</td><td>81.84</td><td>81.28</td><td>99.87</td></tr>
+<tr><td style="padding:12px;">Non-Violent Crime Severity</td><td>60.07</td><td>52.97</td><td>69.76</td></tr>
+</tbody>
+
+</table>
+
+</div>
+</div>
+
+<!-- ================= BLOCK 3 ================= -->
+<div style="
+display:flex;
+gap:18px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:18px;
+padding:26px;
+backdrop-filter:blur(10px);
+">
+
+<div style="width:5px;background:#f5c542;border-radius:10px;"></div>
+
+<div style="flex:1;">
+
+<h3 style="color:#f5c542;font-size:22px;margin-bottom:14px;">
+Criminal Code Offences by Type
+</h3>
+
+<p style="color:#e2e8f0;">
+Crime trends in 2025 show continued progress in reducing serious offences, alongside increased reporting in certain categories.
+</p>
+
+<ul style="margin-top:15px;color:#e2e8f0;line-height:1.8;">
+<li>Homicides remained at historically low levels</li>
+<li>Robbery and property crime declined significantly</li>
+<li>Sexual assault reporting increased</li>
+<li>Break and enter incidents slightly increased</li>
+</ul>
+
+<table style="
+width:100%;
+margin-top:25px;
+border-collapse:collapse;
+background:rgba(255,255,255,0.06);
+border-radius:12px;
+overflow:hidden;
+">
+
+<thead>
+<tr style="background:#f5c542;color:#001446;">
+<th style="padding:14px;text-align:left;">Crime Type</th>
+<th>2025 Total</th>
+</tr>
+</thead>
+
+<tbody style="color:#f8fafc;">
+<tr><td style="padding:12px;">Attempted Homicide</td><td>5</td></tr>
+<tr><td style="padding:12px;">Homicide</td><td>5</td></tr>
+<tr><td style="padding:12px;">Shooting</td><td>32</td></tr>
+<tr><td style="padding:12px;">Abduction / Kidnapping</td><td>80</td></tr>
+<tr><td style="padding:12px;">Child Pornography</td><td>229</td></tr>
+<tr><td style="padding:12px;">Criminal Harassment</td><td>288</td></tr>
+<tr><td style="padding:12px;">Robbery</td><td>288</td></tr>
+<tr><td style="padding:12px;">Threats</td><td>605</td></tr>
+<tr><td style="padding:12px;">Sexual Assault</td><td>616</td></tr>
+<tr><td style="padding:12px;">Motor Vehicle Theft</td><td>815</td></tr>
+<tr><td style="padding:12px;">Break & Enter</td><td>1,064</td></tr>
+<tr><td style="padding:12px;">Property Damage</td><td>2,313</td></tr>
+<tr><td style="padding:12px;">Fraud</td><td>2,458</td></tr>
+<tr><td style="padding:12px;">Assault</td><td>2,482</td></tr>
+<tr><td style="padding:12px;">Other Criminal Code</td><td>6,333</td></tr>
+<tr style="font-weight:700;background:rgba(255,255,255,0.12);"><td>Total</td><td>29,013</td></tr>
+</tbody>
+
+</table>
+
+</div>
+</div>
+
+</div>
+</main>
+
+<div id="footerMount"></div>
+
+<script src="/js/header.js"></script>
+<script src="/js/app.js"></script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../css/style.css" />
+
+<div id="headerMount"></div>
+
+<!-- ================= HERO ================= -->
+<section style="
+position:relative;
+width:100%;
 min-height:560px;
 display:flex;
 align-items:center;
