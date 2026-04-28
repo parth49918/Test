@@ -1,5 +1,893 @@
 <style>
 :root{
+  --lps-bg:#001446;
+  --lps-bg-2:#071f63;
+  --lps-text:#eaf1ff;
+  --lps-muted:#b9c7e6;
+  --lps-accent:#f5c542;
+  --lps-line:rgba(255,255,255,.14);
+  --lps-glass:rgba(255,255,255,.055);
+  --lps-shadow:0 22px 70px rgba(0,0,0,.48);
+  --lps-header-h:98px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--lps-bg);
+  color:var(--lps-text);
+  font-family:"Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  padding-top:var(--lps-header-h);
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* ================= HEADER ================= */
+
+.lpsHeader{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:var(--lps-header-h);
+  z-index:99999;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(245,197,66,.10), transparent 28%),
+    linear-gradient(180deg, rgba(0,20,70,.98), rgba(0,20,70,.93));
+  border-bottom:1px solid var(--lps-line);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 10px 30px rgba(0,0,0,.28);
+  transition:height .35s ease, background .35s ease, box-shadow .35s ease;
+}
+
+.lpsHeader.is-scrolled{
+  height:76px;
+  box-shadow:0 12px 34px rgba(0,0,0,.40);
+}
+
+.lpsNav{
+  height:100%;
+  width:100%;
+  max-width:1540px;
+  margin:0 auto;
+  padding:0 46px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+/* ================= LOGO ================= */
+
+.lpsBrand{
+  width:170px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  flex-shrink:0;
+  position:relative;
+}
+
+.lpsLogo{
+  width:142px;
+  height:142px;
+  transform:translateY(28px);
+  background:url("/_webfiles/your-badge.png") center/contain no-repeat;
+  filter:drop-shadow(0 12px 28px rgba(0,0,0,.55));
+  transition:width .38s ease, height .38s ease, transform .38s ease;
+}
+
+.lpsHeader.is-scrolled .lpsLogo{
+  width:62px;
+  height:62px;
+  transform:translateY(0);
+}
+
+/* ================= DESKTOP NAV ================= */
+
+.lpsDesktopNav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  margin-left:auto;
+}
+
+.lpsNavBtn{
+  position:relative;
+  appearance:none;
+  border:0;
+  background:transparent;
+  color:var(--lps-text);
+  padding:15px 12px;
+  border-radius:16px;
+  font-size:20px;
+  line-height:1;
+  font-weight:500;
+  letter-spacing:.035em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  transition:color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.lpsNavBtn::after{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:6px;
+  height:2px;
+  background:linear-gradient(90deg, transparent, var(--lps-accent), transparent);
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .25s ease;
+}
+
+.lpsNavBtn:hover,
+.lpsDrop.open > .lpsNavBtn{
+  color:var(--lps-accent);
+  background:rgba(255,255,255,.055);
+  transform:translateY(-1px);
+}
+
+.lpsNavBtn:hover::after,
+.lpsDrop.open > .lpsNavBtn::after{
+  transform:scaleX(1);
+}
+
+.lpsCaret{
+  width:9px;
+  height:9px;
+  border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;
+  transform:rotate(45deg);
+  margin-top:-5px;
+  transition:transform .25s ease, margin .25s ease;
+}
+
+.lpsDrop.open .lpsCaret{
+  transform:rotate(-135deg);
+  margin-top:4px;
+}
+
+/* ================= FULL WIDTH MEGA MENU ================= */
+
+.lpsDrop{
+  position:static;
+}
+
+.lpsMega{
+  position:fixed;
+  left:0;
+  right:0;
+  top:var(--lps-header-h);
+  z-index:99998;
+  display:none;
+  grid-template-columns:minmax(280px,390px) minmax(260px,1fr) minmax(260px,1fr);
+  gap:44px;
+  min-height:275px;
+  padding:34px 72px 38px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(245,197,66,.12), transparent 34%),
+    linear-gradient(180deg, rgba(0,20,70,.99), rgba(0,20,70,.97));
+  border-top:1px solid rgba(245,197,66,.18);
+  border-bottom:1px solid var(--lps-line);
+  box-shadow:var(--lps-shadow);
+  animation:lpsMegaIn .24s ease both;
+}
+
+.lpsHeader.is-scrolled .lpsMega{
+  top:76px;
+}
+
+.lpsDrop.open .lpsMega{
+  display:grid;
+}
+
+@keyframes lpsMegaIn{
+  from{
+    opacity:0;
+    transform:translateY(-10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.lpsMegaTitle{
+  font-size:31px;
+  font-weight:600;
+  line-height:1.13;
+  letter-spacing:.015em;
+  text-transform:uppercase;
+  color:#fff;
+  padding:8px 0;
+}
+
+.lpsMegaTitle span{
+  display:block;
+  color:var(--lps-accent);
+}
+
+.lpsMegaCol{
+  display:grid;
+  align-content:start;
+  gap:8px;
+}
+
+.lpsMegaLink{
+  min-height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:14px 16px;
+  border-radius:16px;
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  line-height:1.25;
+  border:1px solid transparent;
+  background:rgba(255,255,255,.025);
+  transition:background .24s ease, border-color .24s ease, transform .24s ease, color .24s ease;
+}
+
+.lpsMegaLink:hover{
+  color:var(--lps-accent);
+  background:rgba(245,197,66,.095);
+  border-color:rgba(245,197,66,.28);
+  transform:translateX(6px);
+}
+
+.lpsPill{
+  min-width:34px;
+  height:24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.055);
+  color:var(--lps-muted);
+  font-size:12px;
+  font-weight:700;
+}
+
+/* ================= MOBILE BUTTON ================= */
+
+.lpsBurger{
+  display:none;
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.055);
+  color:#fff;
+  font-size:25px;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  transition:background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.lpsBurger:hover{
+  color:var(--lps-accent);
+  background:rgba(245,197,66,.11);
+  transform:translateY(-1px);
+}
+
+/* ================= MOBILE PANEL ================= */
+
+.lpsMobileBackdrop{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  background:rgba(0,0,0,.62);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .32s ease;
+}
+
+.lpsMobileBackdrop.open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.lpsMobilePanel{
+  position:absolute;
+  top:0;
+  right:0;
+  width:min(520px,92vw);
+  height:100%;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(245,197,66,.10), transparent 35%),
+    linear-gradient(180deg,#071a58,#001446);
+  border-left:1px solid rgba(255,255,255,.15);
+  box-shadow:-22px 0 70px rgba(0,0,0,.45);
+  transform:translateX(100%);
+  transition:transform .35s ease;
+  overflow:auto;
+}
+
+.lpsMobileBackdrop.open .lpsMobilePanel{
+  transform:translateX(0);
+}
+
+.lpsMobileTop{
+  height:116px;
+  padding:18px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--lps-line);
+}
+
+.lpsMobileLogo{
+  width:76px;
+  height:76px;
+  background:url("/_webfiles/your-badge.png") center/contain no-repeat;
+  filter:drop-shadow(0 10px 24px rgba(0,0,0,.45));
+}
+
+.lpsMobileClose{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:27px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.lpsMobileClose:hover{
+  color:var(--lps-accent);
+}
+
+.lpsMobileBody{
+  padding:28px 26px 42px;
+}
+
+.lpsMobileTitle{
+  margin:0 0 20px;
+  color:#fff;
+  font-size:24px;
+  font-weight:600;
+  letter-spacing:.01em;
+}
+
+.lpsMobileRule{
+  height:1px;
+  background:rgba(255,255,255,.13);
+  margin:0 0 18px;
+}
+
+.lpsMobileItem{
+  margin-bottom:14px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.035);
+  border-radius:18px;
+  overflow:hidden;
+  transition:border-color .25s ease, background .25s ease;
+}
+
+.lpsMobileItem.open{
+  border-color:rgba(245,197,66,.48);
+  background:rgba(245,197,66,.045);
+}
+
+.lpsMobileHead,
+.lpsMobilePlain{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#fff;
+  min-height:62px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:19px;
+  font-weight:650;
+  cursor:pointer;
+  text-align:left;
+}
+
+.lpsMobileHead span:last-child{
+  font-size:26px;
+  line-height:1;
+  transition:transform .25s ease, color .25s ease;
+}
+
+.lpsMobileItem.open .lpsMobileHead{
+  color:var(--lps-accent);
+}
+
+.lpsMobileItem.open .lpsMobileHead span:last-child{
+  transform:rotate(180deg);
+  color:var(--lps-accent);
+}
+
+.lpsMobileContent{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .28s ease;
+}
+
+.lpsMobileItem.open .lpsMobileContent{
+  grid-template-rows:1fr;
+}
+
+.lpsMobileContentInner{
+  overflow:hidden;
+}
+
+.lpsMobileContentInner a{
+  display:block;
+  padding:14px 22px 14px 32px;
+  color:var(--lps-muted);
+  font-size:16px;
+  font-weight:600;
+  border-top:1px solid rgba(255,255,255,.07);
+  transition:color .2s ease, background .2s ease, padding-left .2s ease;
+}
+
+.lpsMobileContentInner a:hover{
+  color:var(--lps-accent);
+  background:rgba(255,255,255,.035);
+  padding-left:38px;
+}
+
+.lpsMobilePdf{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:62px;
+  padding:0 20px;
+  color:#fff;
+  font-size:19px;
+  font-weight:650;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1180px){
+  .lpsNav{
+    padding:0 28px;
+  }
+
+  .lpsDesktopNav{
+    gap:8px;
+  }
+
+  .lpsNavBtn{
+    font-size:17px;
+  }
+}
+
+@media(max-width:980px){
+  body{
+    padding-top:82px;
+  }
+
+  .lpsHeader,
+  .lpsHeader.is-scrolled{
+    height:82px;
+  }
+
+  .lpsNav{
+    padding:0 20px;
+  }
+
+  .lpsDesktopNav{
+    display:none;
+  }
+
+  .lpsBurger{
+    display:flex;
+  }
+
+  .lpsBrand{
+    width:auto;
+  }
+
+  .lpsLogo,
+  .lpsHeader.is-scrolled .lpsLogo{
+    width:70px;
+    height:70px;
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:520px){
+  .lpsMobileBody{
+    padding:24px 18px 38px;
+  }
+
+  .lpsMobileTitle{
+    font-size:22px;
+  }
+
+  .lpsMobileHead,
+  .lpsMobilePlain,
+  .lpsMobilePdf{
+    font-size:17px;
+  }
+}
+</style>
+
+<header class="lpsHeader" id="lpsHeader">
+  <div class="lpsNav">
+    <a class="lpsBrand" href="/" aria-label="Annual Report Home">
+      <span class="lpsLogo" aria-hidden="true"></span>
+    </a>
+
+    <nav class="lpsDesktopNav" aria-label="Primary navigation">
+      <button class="lpsNavBtn" type="button" data-scroll-target="intro">Introduction</button>
+
+      <div class="lpsDrop">
+        <button class="lpsNavBtn" type="button" aria-expanded="false">
+          Safety <span class="lpsCaret" aria-hidden="true"></span>
+        </button>
+        <div class="lpsMega" role="menu">
+          <div class="lpsMegaTitle"><span>Community</span> Safety and Specialized Investigations</div>
+          <div class="lpsMegaCol">
+            <a class="lpsMegaLink" href="/Safety/Crime_Trends_And_Clearance_Rates/Crime_Trends_And_Clearance_Rates.html">Crime in London <span class="lpsPill">01</span></a>
+            <a class="lpsMegaLink" href="/Safety/Crime Analysis/Crime_Analysis.html">Crime Prevention <span class="lpsPill">02</span></a>
+            <a class="lpsMegaLink" href="/Safety/Victim Support/Victim_Support.html">Victim Support <span class="lpsPill">03</span></a>
+          </div>
+          <div class="lpsMegaCol">
+            <a class="lpsMegaLink" href="/Safety/Specialized Initiatives/Specialized Initiatives.html">Disrupting Serious Crime and Repeat Offending <span class="lpsPill">04</span></a>
+            <a class="lpsMegaLink" href="/Safety/Joint Forces Operations/Joint_Forces_Operations.html">Joint Forces Operations and Internal Task Forces <span class="lpsPill">05</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lpsDrop">
+        <button class="lpsNavBtn" type="button" aria-expanded="false">
+          Trust <span class="lpsCaret" aria-hidden="true"></span>
+        </button>
+        <div class="lpsMega" role="menu">
+          <div class="lpsMegaTitle"><span>Community</span> Trust and Frontline Operations</div>
+          <div class="lpsMegaCol">
+            <a class="lpsMegaLink" href="/Trust/Enhancing emergency reponse/enhancing_emergency_response.html">Enhancing Emergency Response and Accessibility <span class="lpsPill">01</span></a>
+            <a class="lpsMegaLink" href="/Trust/Supporting Individual At Risk/supporting_individual_risk.html">Supporting Individuals At Risk <span class="lpsPill">02</span></a>
+            <a class="lpsMegaLink" href="/Trust/Addressing Safety Concerns/addressing_safety_concern.html">Addressing Community-Identified Safety Concerns <span class="lpsPill">03</span></a>
+          </div>
+          <div class="lpsMegaCol">
+            <a class="lpsMegaLink" href="/Trust/Crime Prevention/crime_prevention.html">Crime Prevention <span class="lpsPill">04</span></a>
+            <a class="lpsMegaLink" href="/Trust/Community Connections/community_connections.html">Strengthening Community Engagement <span class="lpsPill">05</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lpsDrop">
+        <button class="lpsNavBtn" type="button" aria-expanded="false">
+          Wellness <span class="lpsCaret" aria-hidden="true"></span>
+        </button>
+        <div class="lpsMega" role="menu">
+          <div class="lpsMegaTitle"><span>Organizational</span> Wellness and Performance</div>
+          <div class="lpsMegaCol">
+            <a class="lpsMegaLink" href="/Wellness/Calls For Service/calls_for_service.html">Calls For Service and Response Time <span class="lpsPill">01</span></a>
+            <a class="lpsMegaLink" href="/Wellness/Workforce Development/workforce_development.html">Workforce and Organizational Development <span class="lpsPill">02</span></a>
+            <a class="lpsMegaLink" href="/Wellness/Performance Accountability/performance_accountability.html">Police Performance and Accountability <span class="lpsPill">03</span></a>
+          </div>
+          <div class="lpsMegaCol">
+            <a class="lpsMegaLink" href="/Wellness/Modernizing Policing/modernizing_policing.html">Modernizing Policing <span class="lpsPill">04</span></a>
+            <a class="lpsMegaLink" href="/Wellness/Awards & Recognition/awards_&_recognition.html">Awards & Recognition <span class="lpsPill">05</span></a>
+          </div>
+        </div>
+      </div>
+
+      <a class="lpsNavBtn" href="/fullreport.pdf" target="_blank" rel="noopener">Full Report</a>
+    </nav>
+
+    <button class="lpsBurger" id="lpsBurger" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<div class="lpsMobileBackdrop" id="lpsMobileBackdrop" aria-hidden="true">
+  <aside class="lpsMobilePanel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="lpsMobileTop">
+      <div class="lpsMobileLogo" aria-hidden="true"></div>
+      <button class="lpsMobileClose" id="lpsMobileClose" type="button" aria-label="Close menu">×</button>
+    </div>
+
+    <div class="lpsMobileBody">
+      <h3 class="lpsMobileTitle">2025 Annual Report</h3>
+      <div class="lpsMobileRule"></div>
+
+      <div class="lpsMobileItem">
+        <button class="lpsMobilePlain" type="button" data-scroll-target="intro">Introduction</button>
+      </div>
+
+      <div class="lpsMobileItem">
+        <button class="lpsMobileHead" type="button">
+          <span>Safety</span><span>⌄</span>
+        </button>
+        <div class="lpsMobileContent">
+          <div class="lpsMobileContentInner">
+            <a href="/Safety/Crime_Trends_And_Clearance_Rates/Crime_Trends_And_Clearance_Rates.html">Crime in London</a>
+            <a href="/Safety/Crime Analysis/Crime_Analysis.html">Crime Prevention</a>
+            <a href="/Safety/Victim Support/Victim_Support.html">Victim Support</a>
+            <a href="/Safety/Specialized Initiatives/Specialized Initiatives.html">Disrupting Serious Crime and Repeat Offending</a>
+            <a href="/Safety/Joint Forces Operations/Joint_Forces_Operations.html">Joint Forces Operations and Internal Task Forces</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lpsMobileItem">
+        <button class="lpsMobileHead" type="button">
+          <span>Trust</span><span>⌄</span>
+        </button>
+        <div class="lpsMobileContent">
+          <div class="lpsMobileContentInner">
+            <a href="/Trust/Enhancing emergency reponse/enhancing_emergency_response.html">Enhancing Emergency Response</a>
+            <a href="/Trust/Supporting Individual At Risk/supporting_individual_risk.html">Supporting Individuals At Risk</a>
+            <a href="/Trust/Addressing Safety Concerns/addressing_safety_concern.html">Addressing Community-Identified Safety Concerns</a>
+            <a href="/Trust/Crime Prevention/crime_prevention.html">Crime Prevention</a>
+            <a href="/Trust/Community Connections/community_connections.html">Strengthening Community Engagement</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lpsMobileItem">
+        <button class="lpsMobileHead" type="button">
+          <span>Wellness</span><span>⌄</span>
+        </button>
+        <div class="lpsMobileContent">
+          <div class="lpsMobileContentInner">
+            <a href="/Wellness/Calls For Service/calls_for_service.html">Calls For Service and Response Time</a>
+            <a href="/Wellness/Workforce Development/workforce_development.html">Workforce and Organizational Development</a>
+            <a href="/Wellness/Performance Accountability/performance_accountability.html">Police Performance and Accountability</a>
+            <a href="/Wellness/Modernizing Policing/modernizing_policing.html">Modernizing Policing</a>
+            <a href="/Wellness/Awards & Recognition/awards_&_recognition.html">Awards & Recognition</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lpsMobileItem">
+        <a class="lpsMobilePdf" href="/fullreport.pdf" target="_blank" rel="noopener">
+          <span>Full Report</span><span class="lpsPill">PDF</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+(function(){
+  const header = document.getElementById("lpsHeader");
+  const drops = Array.from(document.querySelectorAll(".lpsDrop"));
+  const burger = document.getElementById("lpsBurger");
+  const backdrop = document.getElementById("lpsMobileBackdrop");
+  const closeBtn = document.getElementById("lpsMobileClose");
+
+  function closeDesktopMenus(){
+    drops.forEach(drop=>{
+      drop.classList.remove("open");
+      const btn = drop.querySelector(".lpsNavBtn");
+      if(btn) btn.setAttribute("aria-expanded","false");
+    });
+  }
+
+  function openMobile(){
+    backdrop.classList.add("open");
+    backdrop.setAttribute("aria-hidden","false");
+    burger.setAttribute("aria-expanded","true");
+    burger.textContent = "×";
+    document.body.style.overflow = "hidden";
+    closeDesktopMenus();
+  }
+
+  function closeMobile(){
+    backdrop.classList.remove("open");
+    backdrop.setAttribute("aria-hidden","true");
+    burger.setAttribute("aria-expanded","false");
+    burger.textContent = "☰";
+    document.body.style.overflow = "";
+  }
+
+  drops.forEach(drop=>{
+    const btn = drop.querySelector(".lpsNavBtn");
+    const mega = drop.querySelector(".lpsMega");
+
+    if(!btn || !mega) return;
+
+    btn.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+
+      const willOpen = !drop.classList.contains("open");
+      closeDesktopMenus();
+
+      if(willOpen){
+        drop.classList.add("open");
+        btn.setAttribute("aria-expanded","true");
+      }
+    });
+
+    mega.addEventListener("click", function(e){
+      e.stopPropagation();
+    });
+  });
+
+  document.addEventListener("click", function(){
+    closeDesktopMenus();
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      closeDesktopMenus();
+      closeMobile();
+    }
+  });
+
+  window.addEventListener("scroll", function(){
+    if(window.scrollY > 72){
+      header.classList.add("is-scrolled");
+    }else{
+      header.classList.remove("is-scrolled");
+    }
+  }, {passive:true});
+
+  burger.addEventListener("click", function(e){
+    e.stopPropagation();
+    if(backdrop.classList.contains("open")){
+      closeMobile();
+    }else{
+      openMobile();
+    }
+  });
+
+  closeBtn.addEventListener("click", closeMobile);
+
+  backdrop.addEventListener("click", function(e){
+    if(e.target === backdrop){
+      closeMobile();
+    }
+  });
+
+  document.querySelectorAll(".lpsMobileHead").forEach(btn=>{
+    btn.addEventListener("click", function(e){
+      e.stopPropagation();
+      const item = btn.closest(".lpsMobileItem");
+      const wasOpen = item.classList.contains("open");
+
+      document.querySelectorAll(".lpsMobileItem").forEach(x=>{
+        if(x.querySelector(".lpsMobileHead")) x.classList.remove("open");
+      });
+
+      if(!wasOpen){
+        item.classList.add("open");
+      }
+    });
+  });
+
+  document.querySelectorAll(".lpsMobileContentInner a, .lpsMobilePdf").forEach(link=>{
+    link.addEventListener("click", closeMobile);
+  });
+
+  document.querySelectorAll("[data-scroll-target]").forEach(btn=>{
+    btn.addEventListener("click", function(e){
+      const id = btn.getAttribute("data-scroll-target");
+      const target = document.getElementById(id);
+
+      if(target){
+        e.preventDefault();
+        closeDesktopMenus();
+        closeMobile();
+
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({top:y, behavior:"smooth"});
+      }
+    });
+  });
+
+  window.addEventListener("resize", function(){
+    if(window.innerWidth > 980){
+      closeMobile();
+    }else{
+      closeDesktopMenus();
+    }
+  });
+})();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+const burger = document.getElementById("burger");
+const mobile = document.getElementById("mobile");
+const close = document.getElementById("close");
+
+// OPEN
+burger.onclick = () => mobile.classList.add("open");
+
+// CLOSE BUTTON
+close.onclick = () => mobile.classList.remove("open");
+
+// ✅ CLOSE ON OUTSIDE CLICK
+document.addEventListener("click", (e) => {
+  if (
+    mobile.classList.contains("open") &&
+    !mobile.contains(e.target) &&
+    !burger.contains(e.target)
+  ) {
+    mobile.classList.remove("open");
+  }
+});
+
+// ✅ CLOSE WHEN CLICKING ANY LINK
+document.querySelectorAll(".mobile a").forEach(link => {
+  link.onclick = () => mobile.classList.remove("open");
+});
+
+
+
+
+
+.brand{
+  display:flex;
+  align-items:center;
+  height:100%;
+}
+
+.brand-badge{
+  width:140px;
+  height:140px;
+  background:url("/_webfiles/your-badge.png") center/contain no-repeat;
+
+  transform:translateY(20px);
+  transition:all .35s ease;
+}
+
+/* SHRINK STATE */
+.header.scrolled .brand-badge{
+  width:60px;
+  height:60px;
+  transform:translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+<style>
+:root{
   --bg:#001446;
   --text:#eaf1ff;
   --muted:#b9c7e6;
