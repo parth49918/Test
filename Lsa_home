@@ -1,0 +1,247 @@
+<style>
+
+/* ================= ROOT ================= */
+:root{
+  --bg:#001446;
+  --text:#eaf1ff;
+  --muted:#b9c7e6;
+  --accent:#fdc82f;
+  --stroke:rgba(255,255,255,.12);
+}
+
+/* ================= BASE ================= */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Mulish',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px;
+}
+
+/* ================= SECTION ================= */
+.section{
+  padding:100px 0;
+  position:relative;
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,#001446 0%,#001446cc 40%,transparent 70%),
+    url("../images/hat.png") right center/cover no-repeat;
+}
+
+.head{
+  font-size:80px;
+  color:var(--accent);
+  font-weight:900;
+  letter-spacing:.1em;
+}
+
+.hero h1{
+  font-size:48px;
+}
+
+.lead{
+  color:var(--muted);
+  font-size:18px;
+  max-width:600px;
+  border-left:2px solid var(--accent);
+  padding-left:16px;
+}
+
+/* ================= PANELS ================= */
+.panel{
+  border:1px solid var(--stroke);
+  border-radius:20px;
+  padding:30px;
+  background:rgba(255,255,255,.03);
+}
+
+/* ================= STATS ================= */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.stat{
+  padding:20px;
+  border-radius:16px;
+  border:1px solid var(--stroke);
+}
+
+.value{
+  font-size:50px;
+  font-weight:900;
+}
+
+.label{
+  margin-top:10px;
+  color:var(--muted);
+}
+
+/* ================= BLOCKS ================= */
+.blocks{
+  display:grid;
+  gap:15px;
+}
+
+.block{
+  display:flex;
+  justify-content:space-between;
+  padding:16px;
+  border-radius:12px;
+  border:1px solid var(--stroke);
+  transition:.3s;
+}
+
+.block:hover{
+  transform:translateX(6px);
+  border-color:var(--accent);
+}
+
+/* ================= REVEAL ================= */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .7s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .stats{grid-template-columns:1fr}
+  .head{font-size:50px}
+  .hero h1{font-size:32px}
+}
+
+</style>
+
+
+<!-- ================= HERO ================= -->
+<section class="hero reveal">
+  <div class="container">
+    <div class="head">2025 ANNUAL REPORT</div>
+    <h1>London Police Service</h1>
+    <p class="lead">
+      From modernizing emergency response to strengthening community partnerships, this report highlights a year of action and progress.
+    </p>
+  </div>
+</section>
+
+
+<!-- ================= INTRO ================= -->
+<section class="section reveal">
+  <div class="container panel">
+    <h2 style="color:#fdc82f;">WE ACKNOWLEDGE</h2>
+    <p class="label">
+      We acknowledge that the London Police Service is on the traditional territory of the Anishinaabek, Haudenosaunee, Lūnaapéewak and Attawandaron Nations...
+    </p>
+  </div>
+</section>
+
+
+<!-- ================= NUMBERS ================= -->
+<section class="section reveal">
+  <div class="container">
+    <h2 style="color:#fdc82f;">BY THE NUMBERS</h2>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="value">13.7%</div>
+        <div class="label">Drop in Crime Severity Index</div>
+      </div>
+
+      <div class="stat">
+        <div class="value">228,150</div>
+        <div class="label">9-1-1 Calls</div>
+      </div>
+
+      <div class="stat">
+        <div class="value">#1</div>
+        <div class="label">Next-Gen 911 Launch</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= SAFETY ================= -->
+<section class="section reveal">
+  <div class="container panel">
+    <h2>SAFETY</h2>
+
+    <div class="blocks">
+      <div class="block"><span>Crime Trends</span> →</div>
+      <div class="block"><span>Crime Prevention</span> →</div>
+      <div class="block"><span>Victim Support</span> →</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= TRUST ================= -->
+<section class="section reveal">
+  <div class="container panel">
+    <h2>TRUST</h2>
+
+    <div class="blocks">
+      <div class="block"><span>Emergency Response</span> →</div>
+      <div class="block"><span>Community Safety</span> →</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= WELLNESS ================= -->
+<section class="section reveal">
+  <div class="container panel">
+    <h2>WELLNESS</h2>
+
+    <div class="blocks">
+      <div class="block"><span>Calls for Service</span> →</div>
+      <div class="block"><span>Workforce Development</span> →</div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+
+/* ================= GOD MODE REVEAL ================= */
+(function(){
+
+const elements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
+    }
+  });
+},{
+  threshold:0.15,
+  rootMargin:"0px 0px -10% 0px"
+});
+
+elements.forEach(el=>observer.observe(el));
+
+})();
+
+</script>
