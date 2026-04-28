@@ -1,0 +1,267 @@
+<style>
+:root{
+  --bg:#001446;
+  --text:#eaf1ff;
+  --muted:#b9c7e6;
+  --stroke:rgba(255,255,255,.12);
+  --accent:#f5c542;
+  --shadow:0 12px 30px rgba(0,0,0,.35);
+  --header-h:100px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#001446;color:var(--text);font-family:Segoe UI,Arial}
+
+/* HEADER */
+.header{
+  position:fixed;
+  top:0;left:0;right:0;
+  background:#001446;
+  z-index:9999;
+  border-bottom:1px solid var(--stroke);
+}
+
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:var(--header-h);
+  padding:0 20px;
+}
+
+/* BRAND */
+.brand-badge{
+  width:120px;
+  height:120px;
+  background:url("../images/LPS-Badge.avif") center/contain no-repeat;
+}
+
+/* NAV */
+.navlinks{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.navbtn{
+  background:none;
+  border:none;
+  color:var(--text);
+  font-weight:800;
+  font-size:18px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* CARET */
+.caret{
+  width:8px;height:8px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+  transform:rotate(45deg);
+}
+
+/* DROPDOWN */
+.dd{position:relative}
+
+.mega{
+  display:none;
+  position:absolute;
+  top:60px;
+  left:0;
+  background:#001446;
+  padding:20px;
+  min-width:280px;
+  box-shadow:var(--shadow);
+  flex-direction:column;
+  gap:10px;
+  border:1px solid var(--stroke);
+}
+
+.dd.open .mega{display:flex}
+
+.mega a{
+  color:white;
+  padding:10px;
+  border-radius:8px;
+}
+.mega a:hover{background:rgba(255,255,255,.08)}
+
+/* BURGER */
+.burger{
+  display:none;
+  font-size:26px;
+  background:none;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+
+/* MOBILE MENU */
+.mobileOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:9999;
+}
+
+.sheet{
+  width:280px;
+  background:#001446;
+  height:100%;
+  padding:20px;
+}
+
+.sheetRow{
+  display:block;
+  padding:14px;
+  border:1px solid var(--stroke);
+  margin-bottom:10px;
+  font-weight:700;
+  color:white;
+  cursor:pointer;
+}
+
+.sheetSub{
+  margin-left:10px;
+}
+
+.sheetSub a{
+  display:block;
+  padding:10px;
+  color:var(--muted);
+}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+  .navlinks{display:none}
+  .burger{display:block}
+}
+</style>
+
+<header class="header" id="siteHeader">
+  <div class="navbar">
+
+    <div class="brand">
+      <span class="brand-badge"></span>
+    </div>
+
+    <nav class="navlinks">
+
+      <button class="navbtn">INTRODUCTION</button>
+
+      <div class="dd">
+        <button class="navbtn">Safety <span class="caret"></span></button>
+        <div class="mega">
+          <a href="/Safety/Crime_Trends_And_Clearance_Rates">Crime in London</a>
+          <a href="/Safety/Crime Analysis">Crime Prevention</a>
+          <a href="/Safety/Victim Support">Victim Support</a>
+          <a href="/Safety/Specialized Initiatives">Serious Crime</a>
+          <a href="/Safety/Joint Forces Operations">Joint Operations</a>
+        </div>
+      </div>
+
+      <div class="dd">
+        <button class="navbtn">Trust <span class="caret"></span></button>
+        <div class="mega">
+          <a href="/Trust/Enhancing emergency reponse">Emergency Response</a>
+          <a href="/Trust/Supporting Individual At Risk">At Risk</a>
+          <a href="/Trust/Addressing Safety Concerns">Safety Concerns</a>
+          <a href="/Trust/Crime Prevention">Crime Prevention</a>
+          <a href="/Trust/Community Connections">Community</a>
+        </div>
+      </div>
+
+      <div class="dd">
+        <button class="navbtn">Wellness <span class="caret"></span></button>
+        <div class="mega">
+          <a href="/Wellness/Calls For Service">Calls For Service</a>
+          <a href="/Wellness/Workforce Development">Workforce</a>
+          <a href="/Wellness/Performance Accountability">Performance</a>
+          <a href="/Wellness/Modernizing Policing">Modernizing</a>
+          <a href="/Wellness/Awards & Recognition">Awards</a>
+        </div>
+      </div>
+
+      <button class="navbtn">FULL REPORT</button>
+
+    </nav>
+
+    <button id="burger" class="burger">☰</button>
+
+  </div>
+</header>
+
+<!-- MOBILE -->
+<div id="mobileOverlay" class="mobileOverlay" hidden>
+  <div class="sheet">
+
+    <div class="sheetRow">Introduction</div>
+
+    <div>
+      <div class="sheetRow toggle">Safety</div>
+      <div class="sheetSub" hidden>
+        <a href="#">Crime in London</a>
+        <a href="#">Crime Prevention</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="sheetRow toggle">Trust</div>
+      <div class="sheetSub" hidden>
+        <a href="#">Emergency</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+
+// DESKTOP DROPDOWN FIX
+document.querySelectorAll(".dd").forEach(dd=>{
+  const btn = dd.querySelector(".navbtn");
+
+  btn.addEventListener("click", function(e){
+    e.stopPropagation();
+
+    document.querySelectorAll(".dd").forEach(x=>{
+      if(x!==dd) x.classList.remove("open");
+    });
+
+    dd.classList.toggle("open");
+  });
+});
+
+// CLICK OUTSIDE CLOSE
+document.addEventListener("click", ()=>{
+  document.querySelectorAll(".dd").forEach(dd=>dd.classList.remove("open"));
+});
+
+// MOBILE MENU
+const burger = document.getElementById("burger");
+const overlay = document.getElementById("mobileOverlay");
+
+burger.onclick = ()=>{
+  overlay.hidden = false;
+};
+
+overlay.onclick = (e)=>{
+  if(e.target === overlay){
+    overlay.hidden = true;
+  }
+};
+
+// MOBILE DROPDOWN
+document.querySelectorAll(".toggle").forEach(btn=>{
+  btn.onclick = ()=>{
+    const sub = btn.nextElementSibling;
+    sub.hidden = !sub.hidden;
+  };
+});
+
+})();
+</script>
