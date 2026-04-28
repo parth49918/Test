@@ -3,6 +3,228 @@
   --bg:#001446;
   --text:#eaf1ff;
   --muted:#b9c7e6;
+  --accent:#f5c542;
+  --stroke:rgba(255,255,255,.12);
+}
+
+/* HEADER */
+.header{
+  position:fixed;
+  top:0;left:0;right:0;
+  background:#001446;
+  z-index:9999;
+}
+
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  height:90px;
+  padding:0 30px;
+}
+
+/* NAV */
+.navlinks{
+  display:flex;
+  gap:30px;
+  align-items:center;
+}
+
+.navbtn{
+  background:none;
+  border:none;
+  color:white;
+  font-weight:800;
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* CARET */
+.caret{
+  margin-left:6px;
+  border-right:2px solid;
+  border-bottom:2px solid;
+  width:8px;height:8px;
+  transform:rotate(45deg);
+  display:inline-block;
+}
+
+/* MEGA MENU */
+.dd{position:relative}
+
+/* FULL WIDTH PANEL */
+.mega{
+  position:fixed;
+  left:0;
+  right:0;
+  top:90px;
+  background:#001446;
+  padding:30px 50px;
+  display:none;
+  grid-template-columns: 320px 1fr 1fr;
+  gap:30px;
+  border-top:1px solid var(--stroke);
+}
+
+/* OPEN STATE */
+.dd.open .mega{
+  display:grid;
+}
+
+/* LEFT BIG TITLE */
+.mega-title{
+  font-size:28px;
+  font-weight:900;
+  line-height:1.2;
+  text-transform:uppercase;
+}
+
+/* LINKS */
+.mega a{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.mega a:hover{
+  color:var(--accent);
+}
+
+/* NUMBER PILL */
+.pill{
+  font-size:12px;
+  border:1px solid var(--stroke);
+  border-radius:999px;
+  padding:2px 8px;
+  opacity:.7;
+}
+
+/* MOBILE */
+@media(max-width:980px){
+  .navlinks{display:none}
+}
+</style>
+
+<header class="header">
+  <div class="navbar">
+
+    <div style="font-weight:900;">LOGO</div>
+
+    <nav class="navlinks">
+
+      <button class="navbtn">INTRODUCTION</button>
+
+      <!-- SAFETY -->
+      <div class="dd">
+        <button class="navbtn">SAFETY <span class="caret"></span></button>
+
+        <div class="mega">
+          
+          <!-- LEFT TITLE -->
+          <div class="mega-title">
+            COMMUNITY SAFETY AND SPECIALIZED INVESTIGATIONS
+          </div>
+
+          <!-- COLUMN 1 -->
+          <div>
+            <a href="#">Crime in London <span class="pill">01</span></a>
+            <a href="#">Crime Prevention <span class="pill">02</span></a>
+            <a href="#">Victim Support <span class="pill">03</span></a>
+          </div>
+
+          <!-- COLUMN 2 -->
+          <div>
+            <a href="#">Serious Crime <span class="pill">04</span></a>
+            <a href="#">Joint Operations <span class="pill">05</span></a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TRUST -->
+      <div class="dd">
+        <button class="navbtn">TRUST <span class="caret"></span></button>
+
+        <div class="mega">
+          <div class="mega-title">COMMUNITY TRUST</div>
+
+          <div>
+            <a href="#">Emergency Response</a>
+            <a href="#">At Risk</a>
+          </div>
+
+          <div>
+            <a href="#">Community</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WELLNESS -->
+      <div class="dd">
+        <button class="navbtn">WELLNESS <span class="caret"></span></button>
+
+        <div class="mega">
+          <div class="mega-title">WELLNESS</div>
+
+          <div>
+            <a href="#">Calls</a>
+            <a href="#">Workforce</a>
+          </div>
+
+          <div>
+            <a href="#">Performance</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="navbtn">FULL REPORT</button>
+
+    </nav>
+
+  </div>
+</header>
+
+<script>
+(function(){
+
+// CLICK MEGA MENU
+document.querySelectorAll(".dd").forEach(dd=>{
+  const btn = dd.querySelector(".navbtn");
+
+  btn.addEventListener("click", (e)=>{
+    e.stopPropagation();
+
+    document.querySelectorAll(".dd").forEach(x=>{
+      if(x!==dd) x.classList.remove("open");
+    });
+
+    dd.classList.toggle("open");
+  });
+});
+
+// CLOSE OUTSIDE
+document.addEventListener("click", ()=>{
+  document.querySelectorAll(".dd").forEach(dd=>dd.classList.remove("open"));
+});
+
+})();
+</script>
+
+
+
+
+
+
+
+
+<style>
+:root{
+  --bg:#001446;
+  --text:#eaf1ff;
+  --muted:#b9c7e6;
   --stroke:rgba(255,255,255,.12);
   --accent:#f5c542;
   --shadow:0 12px 30px rgba(0,0,0,.35);
